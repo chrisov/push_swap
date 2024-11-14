@@ -6,45 +6,41 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/12 15:19:06 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:16:09 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
+#include <stdio.h>									// <-----------------------
 
-struct s_Node
+void	*init_stack(int value)
 {
-	int				nbr;
-	struct s_Node	*next;
-};
+	t_stack	*node;
 
-static void	init_llist(struct s_Node **head, int number)
-{
-	struct s_Node	*node;
-
-	node = (struct s_Node *)malloc(sizeof(struct s_Node));
-	node->nbr = number;
-	node->next = *head;
-	*head = node;
+	node = malloc(sizeof(t_stack));
+	if (!node)
+		return (NULL);
+	node->nbr = value;
+	node->next_nbr = NULL;
+	return (node);
 }
 
-void	print_llist(struct s_Node *head)
+void	print_stack(t_stack *head)
 {
-	struct s_Node	*current;
+	t_stack	*node;
 
-	current = head;
-	while (current != NULL)
+	node = head;
+	while (node != NULL)
 	{
-		printf("\n%d", current->nbr);
-		current = current->next;
+		printf("\n%d", node->nbr);
+		node = node->next_nbr;
 	}
 	printf("\nNULL\n\n");
 }
 
 int	main(int argc, char **argv)
 {
-	struct s_Node	*head;
+	t_stack	*head;
 
 	head = NULL;
 	if (argc == 1)
@@ -54,10 +50,10 @@ int	main(int argc, char **argv)
 		argv++;
 		while (*argv)
 		{
-			init_llist(&head, ft_atoi(*argv));
+			head = (t_stack*) init_stack(ft_atoi(*argv));
 			argv++;
 		}
 	}
-	print_llist(head);
+	print_stack(head);
 	return (0);
 }
