@@ -3,57 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/14 17:16:09 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/15 00:28:31 by dimitris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>									// <-----------------------
 
-void	*init_stack(int value)
-{
-	t_stack	*node;
-
-	node = malloc(sizeof(t_stack));
-	if (!node)
-		return (NULL);
-	node->nbr = value;
-	node->next_nbr = NULL;
-	return (node);
-}
-
-void	print_stack(t_stack *head)
-{
-	t_stack	*node;
-
-	node = head;
-	while (node != NULL)
-	{
-		printf("\n%d", node->nbr);
-		node = node->next_nbr;
-	}
-	printf("\nNULL\n\n");
-}
-
+/**
+ * @brief Sorts (int)argv in an ascending order executing min moves
+ */
 int	main(int argc, char **argv)
 {
-	t_stack	*head;
+	t_stack	*a;
 
-	head = NULL;
 	if (argc == 1)
 		return (0);
-	else
-	{
-		argv++;
-		while (*argv)
-		{
-			head = (t_stack*) init_stack(ft_atoi(*argv));
-			argv++;
-		}
-	}
-	print_stack(head);
+	a = stack_init(argv);
+	print_node(a);
 	return (0);
 }
