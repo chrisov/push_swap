@@ -6,7 +6,7 @@
 /*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/15 00:54:12 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/15 01:52:31 by dimitris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,26 @@ int	nbr_length(int value)
 		value /= 10;
 	}
 	return (result);
+}
+
+int	array_max_len(char **array)
+{
+	int	max;
+	int	result;
+
+	result = 0;
+	max = abs(ft_atoi(*array));
+	while (*array)
+	{
+		if (abs(ft_atoi(*array)) > max)
+			max = abs(ft_atoi(*array));
+		array++;
+	}
+	while (max > 0)
+	{
+		result++;
+		max /= 10;
+	}
+	return (result);
+
 }

@@ -6,7 +6,7 @@
 /*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:13:00 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/15 00:52:28 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/15 01:15:28 by dimitris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
-
+/**
+ * @note Handle the out of int range edge case.
+ */
 // static int	error_handling(int size, char **array)
 // {
 // 	int	i;
