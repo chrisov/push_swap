@@ -6,7 +6,7 @@
 /*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/15 03:08:05 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/16 01:15:34 by dimitris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_stack
 {
 	int				nbr;
 	int				length;
-	int				current_pos;
+	int				init_pos;
 	int				target_pos;
 	char			*sign;
 	struct s_stack	*next_nbr;
@@ -31,14 +31,16 @@ typedef struct s_stack
 
 int			main(int argc, char **argv);
 int			ft_atoi(const char *str);
-char		*ft_itoa(int n);
 int			ft_isdigit(int c);
 int			nbr_length(int value);
-int			array_max_len(char **array);
+int			array_max_digits(char **array);
+int			**buckets_alloc(t_stack *s, int maxlen);
+int			**buckets_init(t_stack *s, int digits);
 char		*nbr_sign(int number);
+char		*ft_itoa(int n);
 void		target_position(t_stack *node, int size, int max_len);
 void		print_node(t_stack *head);
 t_stack		*new_node(int value, int position);
-t_stack		*stack_init(char **array, int array_size);
+t_stack		*stack_init(char **array);
 
 #endif
