@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/15 16:06:21 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/16 12:44:06 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,33 @@ t_stack	*new_node(int value, int position_count)
 	if (!node)
 		return (NULL);
 	node->nbr = value;
-	node->current_pos = position_count;
+	node->init_pos = position_count;
 	node->sign = nbr_sign(value);
 	node->length = nbr_length(value);
 	node->next_nbr = NULL;
 	return (node);
 }
 
-t_stack	*stack_init(char **array, int array_size)
+t_stack	*stack_init(char **array)
 {
 	t_stack	*s;
 	t_stack	*ptr;
-	int		position_count;
-	int		maxlen;
+	int		init_pos_count;
+	int		maxdigit;
 
-	position_count = 1;
+	init_pos_count = 1;
 	array++;
-	maxlen = array_max_len(array);
-	s = new_node(ft_atoi(*array++), position_count++);
-	target_position(s, array_size, maxlen);
+	maxdigit = array_max_digits(array);
+	s = new_node(ft_atoi(*array), init_pos_count++);
+	array++;
 	ptr = s;
 	while (*array)
 	{
-		ptr->next_nbr = new_node(ft_atoi(*array++), position_count++);
-		target_position(ptr, array_size, maxlen);
+		ptr->next_nbr = new_node(ft_atoi(*array), init_pos_count++);
 		ptr = ptr->next_nbr;
+		array++;
 	}
+	target_position(s, maxdigit);
 	return (s);
 }
 
@@ -53,35 +54,15 @@ t_stack	*stack_init(char **array, int array_size)
  * @param size Size of stack
  * @param max_len Number digits of the biggest number in the stack.
  */
-void	target_position(t_stack *node, int size, int max_len)
+void	target_position(t_stack *node, int digits)
 {
 	t_stack	*ptr;
-	int		length;
-	int		position;
-	int		digit;
+	int		**buckets;
 
 	ptr = node;
-	length = max_len;
-	position = size;
-	while (ptr)
-	{
-		if (ptr->length == length)
-		{
-			digit = 9;
-			while (digit >= 0)
-			{
-				if ((ft_itoa(ptr->nbr)[length - 1] - '0') == digit)
-				{
-					ptr->target_pos = position;
-					position--;
-					break ;
-				}
-				digit--;
-			}
-			length--;
-		}
-		ptr = ptr->next_nbr;
-	}
+	buckets = buckets_alloc(ptr, digits);
+	ptr = node;
+	buckets = buckets_init(ptr, digits);
 }
 
 void	print_node(t_stack *head)			//<-------- PRINTF
@@ -91,7 +72,7 @@ void	print_node(t_stack *head)			//<-------- PRINTF
 	node = head;
 	while (node)
 	{
-		printf("stack[%d]: value= %d\ttarget= %d\n", node->current_pos, node->nbr, node->target_pos);
+		printf("stack[%d]: value= %d\ttarget= %d\n", node->init_pos, node->nbr, node->target_pos);
 		node = node->next_nbr;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/15 01:52:31 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/16 01:15:15 by dimitris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	nbr_length(int value)
 	return (result);
 }
 
-int	array_max_len(char **array)
+int	array_max_digits(char **array)
 {
 	int	max;
 	int	result;
@@ -85,4 +85,62 @@ int	array_max_len(char **array)
 	}
 	return (result);
 
+}
+
+int	**buckets_alloc(t_stack *s, int maxlen)
+{
+	int		**array;
+	int		size;
+	int		columns;
+	t_stack	*ptr;
+
+	array = malloc(maxlen * sizeof(int *));
+	if (!array)
+		return (0);
+	size = maxlen;
+	while (size >= 1)
+	{
+		columns = 0;
+		ptr = s;
+		while (ptr)
+		{
+			if (ptr->length == size)
+				columns++;
+			ptr = ptr->next_nbr;
+		}
+		array[size - 1] = malloc (columns * sizeof(int));
+		if (!array[size - 1])
+			return (0);
+		size--;
+	}
+	return (array);
+}
+
+int	**buckets_init(t_stack *ptr, int digits)
+{
+	int	columns;
+	int	**array;
+
+	while (digits >= 1)
+	{
+		while (ptr)
+		{
+			columns = 0;
+			if (ptr->length == digits)
+			{
+				array[digits - 1][columns] = ptr->nbr;
+				columns++;
+			}
+			ptr = ptr->next_nbr;
+		}
+		digits--;
+	}
+}
+
+void	bucket_sort(int **array)
+{
+	while (*array)
+	{
+
+	}
 }
