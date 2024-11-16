@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/16 12:44:06 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/16 12:49:43 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ t_stack	*stack_init(char **array)
 	t_stack	*s;
 	t_stack	*ptr;
 	int		init_pos_count;
-	int		maxdigit;
+	int		max_magn;
 
 	init_pos_count = 1;
 	array++;
-	maxdigit = array_max_digits(array);
+	max_magn = max_order_of_magn(array);
 	s = new_node(ft_atoi(*array), init_pos_count++);
 	array++;
 	ptr = s;
@@ -46,7 +46,7 @@ t_stack	*stack_init(char **array)
 		ptr = ptr->next_nbr;
 		array++;
 	}
-	target_position(s, maxdigit);
+	target_position(s,	max_magn);
 	return (s);
 }
 

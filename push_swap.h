@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/16 01:15:34 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/16 12:49:51 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			main(int argc, char **argv);
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
 int			nbr_length(int value);
-int			array_max_digits(char **array);
+int			max_order_of_magnitude(char **array);
 int			**buckets_alloc(t_stack *s, int maxlen);
 int			**buckets_init(t_stack *s, int digits);
 char		*nbr_sign(int number);
