@@ -6,7 +6,7 @@
 /*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 12:50:23 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/17 20:14:02 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:45:53 by dimitris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * 
  * @returns Matrix (int).
  */
-static int	**buckets_alloc(int *array)
+static int	**buckets_alloc(int *array, int size)
 {
 	int		**matrix;
 	int		magnitude;
@@ -31,17 +31,20 @@ static int	**buckets_alloc(int *array)
 	matrix = malloc(magnitude * sizeof(int *));
 	if (!matrix)
 		return (NULL);
-	while (magnitude >= 1)
+	while (magnitude > 0)
 	{
 		columns = 0;
 		i = 0;
-		while (array[i])
+		while (i < size)
 		{
 			if (nbr_length(array[i]) == magnitude)
 				columns++;
 			i++;
 		}
-		matrix[magnitude - 1] = malloc (columns * sizeof(int));
+		if (columns > 0)
+			matrix[magnitude - 1] = malloc (columns * sizeof(int));
+		else
+			return (NULL);
 		if (!matrix[magnitude - 1])
 			return (NULL);
 		magnitude--;
@@ -54,18 +57,23 @@ static int	**buckets_alloc(int *array)
  * where each row contains the numbers of the array of the same order
  * of magnitude.
  */
-static void	buckets_init(int *array, int **matrix)
+static void	buckets_init(int *array, int size, int **matrix)
 {
 	int	i;
 	int	column;
 	int	magnitude;
 
 	magnitude = max_order_of_magnitude(array);
-	while (magnitude >= 1)
+	while (magnitude > 0)
 	{
 		i = 0;
 		column = 0;
-		while (array[i])
+		if (matrix[magnitude - 1] == NULL)
+		{
+			magnitude--;
+			continue ;
+		}
+		while (i < size)
 		{
 			if (nbr_length(array[i]) == magnitude)
 			{
@@ -126,7 +134,7 @@ static void	bucket_sort(int **matrix)
  * each row to an (int) *result.
  * 
  * @note array_size = argc - 1.
- * 
+ * 	
  * @returns A sorted (int) *array.
  */
 int	*buckets(int *array, int array_size)
@@ -134,8 +142,8 @@ int	*buckets(int *array, int array_size)
 	int	**buckets;
 	int	*result;
 
-	buckets = buckets_alloc(array);
-	buckets_init(array, buckets);
+	buckets = buckets_alloc(array, array_size);
+	buckets_init(array, array_size, buckets);
 	bucket_sort(buckets);
 	result = malloc (array_size * sizeof(int));
 	if (!result)
