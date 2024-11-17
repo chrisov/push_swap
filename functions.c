@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/16 12:51:50 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/17 18:55:41 by dimitris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,35 @@ int	ft_atoi(const char *str)
 	return (sign * res);
 }
 
+/**
+ * @brief Converts an array of str, of size "size" into an array of int.
+ * 
+ * @note Array is incrememnted before getting converted to get past argv[0].
+ */
+int	*atoi_array(char **array, int size)
+{
+	int	*array_int;
+	int	i;
+
+	array_int = malloc(size * sizeof(int));
+	if (!array_int)
+		return (0);
+	i = 0;
+	while (array[i + 1])
+	{
+		array_int[i] = ft_atoi(array[i + 1]);
+		i++;
+	}
+	return (array_int);
+}
+
+/**
+ * @brief Tags the argument number depending on its sign.
+ *  
+ * @note 0 returns "Positive".
+ * 
+ * @returns "Positive" or "Negative".
+ */
 char	*nbr_sign(int number)
 {
 	if (number >= 0)
@@ -48,6 +77,13 @@ char	*nbr_sign(int number)
 		return ("negative");
 }
 
+/**
+ * @brief Calculates the order of magnitude of a specific number
+ * 
+ * @param value The number of which the magnitude is to be calculated.
+ * 
+ * @returns result
+ */
 int	nbr_length(int value)
 {
 	int	result;
@@ -65,18 +101,24 @@ int	nbr_length(int value)
 	return (result);
 }
 
-int	max_order_of_magnitude(char **array)
+/**
+ * @brief Calculates the order of magnitude of the biggest number
+ * given an array of ints.
+ */
+int	max_order_of_magnitude(int *array)
 {
 	int	max;
 	int	result;
+	int	i;
 
 	result = 0;
-	max = abs(ft_atoi(*array));
-	while (*array)
+	i = 0;
+	max = abs(array[i]);
+	while (array[i])
 	{
-		if (abs(ft_atoi(*array)) > max)
-			max = abs(ft_atoi(*array));
-		array++;
+		if (abs(array[i]) > max)
+			max = abs(array[i]);
+		i++;
 	}
 	while (max > 0)
 	{
