@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/16 13:14:38 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:14:50 by dimitris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * 
  * @returns The newly created node.
  */
-t_stack	*new_node(int value, int position)
+t_stack	*new_node(int value, int position, int target_pos)
 {
 	t_stack	*node;
 
@@ -31,6 +31,7 @@ t_stack	*new_node(int value, int position)
 	node->init_pos = position;
 	node->sign = nbr_sign(value);
 	node->length = nbr_length(value);
+	node->target_pos = target_pos;
 	node->next_nbr = NULL;
 	return (node);
 }
@@ -46,44 +47,25 @@ t_stack	*new_node(int value, int position)
  * 
  * @returns s.
  */
-t_stack	*stack_init(char **array)
+t_stack	*stack_init(int *array, int *sorted_array)
 {
 	t_stack	*s;
 	t_stack	*ptr;
 	int		init_pos_count;
-	int		max_magn;
 
 	init_pos_count = 1;
+	s = new_node(*array, init_pos_count++, *sorted_array);
 	array++;
-	max_magn = max_order_of_magn(array);
-	s = new_node(ft_atoi(*array), init_pos_count++);
-	array++;
+	sorted_array++;
 	ptr = s;
 	while (*array)
 	{
-		ptr->next_nbr = new_node(ft_atoi(*array), init_pos_count++);
+		ptr->next_nbr = new_node(*array, init_pos_count++, *sorted_array);
 		ptr = ptr->next_nbr;
 		array++;
+		sorted_array++;
 	}
-	target_position(s,	max_magn);
 	return (s);
-}
-
-/**
- * @brief Determines the target_position of each node in the stack.
- * 
- * @param magnitude Order of magnitude of the biggest number.
- * @param max_len Number digits of the biggest number in the stack.
- */
-void	target_position(t_stack *node, int magnitude)
-{
-	t_stack	*ptr;
-	int		**buckets;
-
-	ptr = node;
-	buckets = buckets_alloc(ptr, magnitude);
-	ptr = node;
-	buckets = buckets_init(ptr, magnitude);
 }
 
 void	print_node(t_stack *head)			//<-------- PRINTF
