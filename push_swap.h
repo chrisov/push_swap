@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/16 12:49:51 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/16 13:17:10 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>						// <----------------- PRINTF
 # include <stdbool.h>
 # include <unistd.h>
-#include <limits.h>
+# include <limits.h>
 
 typedef struct s_stack
 {
