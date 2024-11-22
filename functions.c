@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/22 16:27:32 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:06:13 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	*atoi_array(char **array, int size)
 	if (!array_int)
 		return (0);
 	i = 0;
-	while (array[i])
+	while (i < size)
 	{
 		array_int[i] = ft_atoi(array[i]);
 		i++;
@@ -105,7 +105,7 @@ int	nbr_length(int value)
  * @brief Calculates the order of magnitude of the biggest number
  * given an array of ints.
  */
-int	max_order_of_magnitude(int *array)
+int	max_order_of_magnitude(int *array, int array_size)
 {
 	int	max;
 	int	result;
@@ -114,7 +114,7 @@ int	max_order_of_magnitude(int *array)
 	result = 0;
 	i = 0;
 	max = abs(array[i]);
-	while (array[i])
+	while (i < array_size)
 	{
 		if (abs(array[i]) > max)
 			max = abs(array[i]);
@@ -126,5 +126,4 @@ int	max_order_of_magnitude(int *array)
 		max /= 10;
 	}
 	return (result);
-
 }
