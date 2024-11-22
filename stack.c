@@ -6,12 +6,26 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/18 13:39:00 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:26:33 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
+
+/**
+ * @brief Calculates the target position of each node
+ */
+static int	target_position(int array, int *sorted_array)
+{
+	int	i;
+	int	res;
+
+	i = 0;
+	res = 1;
+	while (sorted_array[i++] != array)
+		res++;
+	return (res);
+}
 
 /**
  * @brief Create a new node in the stack and init most of its attributes.
@@ -43,7 +57,7 @@ t_stack	*new_node(int value, int position, int target_pos)
  * @param s The stack to be returned.
  * @param ptr Points to the stack and is used to traverse the array and
  * create the nodes. 
- * @param init_pos_count Increments every time a node is created.
+ * @param init_pos Increments every time a node is created.
  * @param max_magn The order of magnitude of the biggest number in the array.
  * 
  * @returns s.
@@ -51,20 +65,21 @@ t_stack	*new_node(int value, int position, int target_pos)
 t_stack	*stack_init(int *array, int *sorted_array)
 {
 	t_stack	*s;
-	t_stack	*ptr;
-	int		init_pos_count;
+	t_stack	*s_ptr;
+	int		init_pos;
+	int		target_pos;
 
-	init_pos_count = 1;
-	s = new_node(*array, init_pos_count++, *sorted_array);
+	init_pos = 1;
+	target_pos = target_position(*array, sorted_array);
+	s = new_node(*array, init_pos++, target_pos);
 	array++;
-	sorted_array++;
-	ptr = s;
+	s_ptr = s;
 	while (*array)
 	{
-		ptr->next_nbr = new_node(*array, init_pos_count++, *sorted_array);
-		ptr = ptr->next_nbr;
+		target_pos = target_position(*array, sorted_array);
+		s_ptr->next_nbr = new_node(*array, init_pos++, target_pos);
+		s_ptr = s_ptr->next_nbr;
 		array++;
-		sorted_array++;
 	}
 	return (s);
 }
