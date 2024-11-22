@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/22 16:26:33 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:38:33 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 /**
  * @brief Calculates the target position of each node
  */
-static int	target_position(int array, int *sorted_array)
+static int	target_position(int value, int *sorted_array)
 {
 	int	i;
-	int	res;
+	int	target_index;
 
 	i = 0;
-	res = 1;
-	while (sorted_array[i++] != array)
-		res++;
-	return (res);
+	target_index = 1;
+	while (sorted_array[i++] != value)
+		target_index++;
+	return (target_index);
 }
 
 /**
