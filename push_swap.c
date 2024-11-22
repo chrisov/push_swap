@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/22 15:24:04 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:23:56 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	argv++;
 	int_array = atoi_array(argv, argc - 1);
 	sorted_array = buckets(int_array, argc - 1);
-	a = stack_init(int_array, sorted_array);
+	a = stack_init(int_array, argc - 1, sorted_array);
 	print_node(a);
 	return (0);
 }

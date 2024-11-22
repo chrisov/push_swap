@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/18 13:38:22 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:21:07 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ int			ft_atoi(const char *str);
 int			*atoi_array(char **array, int size);
 int			ft_isdigit(int c);
 int			nbr_length(int value);
-int			max_order_of_magnitude(int *array);
+int			max_order_of_magnitude(int *array, int array_size);
 int			*buckets(int *array, int array_size);
 char		*nbr_sign(int number);
 char		*ft_itoa(int n);
 void		print_node(t_stack *head);
 t_stack		*new_node(int value, int position, int target_pos);
-t_stack		*stack_init(int *array, int *sorted_array);
+t_stack		*stack_init(int *array, int array_size, int *sorted_array);
 
 #endif

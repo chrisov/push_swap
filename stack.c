@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/22 16:38:33 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:25:05 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,24 +62,26 @@ t_stack	*new_node(int value, int position, int target_pos)
  * 
  * @returns s.
  */
-t_stack	*stack_init(int *array, int *sorted_array)
+t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 {
 	t_stack	*s;
 	t_stack	*s_ptr;
 	int		init_pos;
 	int		target_pos;
+	int		i;
 
+	i = 0;
 	init_pos = 1;
-	target_pos = target_position(*array, sorted_array);
-	s = new_node(*array, init_pos++, target_pos);
-	array++;
+	target_pos = target_position(array[i], sorted_array);
+	s = new_node(array[i], init_pos++, target_pos);
+	i++;
 	s_ptr = s;
-	while (*array)
+	while (i < array_size)
 	{
-		target_pos = target_position(*array, sorted_array);
-		s_ptr->next_nbr = new_node(*array, init_pos++, target_pos);
+		target_pos = target_position(array[i], sorted_array);
+		s_ptr->next_nbr = new_node(array[i], init_pos++, target_pos);
 		s_ptr = s_ptr->next_nbr;
-		array++;
+		i++;
 	}
 	return (s);
 }
