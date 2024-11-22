@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/22 20:25:05 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/22 23:20:28 by dimitris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_stack	*new_node(int value, int position, int target_pos)
 		return (NULL);
 	node->nbr = value;
 	node->init_pos = position;
-	node->sign = nbr_sign(value);
 	node->length = nbr_length(value);
 	node->target_pos = target_pos;
 	node->next_nbr = NULL;

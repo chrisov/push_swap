@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/22 19:06:13 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/22 23:21:26 by dimitris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,6 @@ int	*atoi_array(char **array, int size)
 		i++;
 	}
 	return (array_int);
-}
-
-/**
- * @brief Tags the argument number depending on its sign.
- *  
- * @note 0 returns "Positive".
- * 
- * @returns "Positive" or "Negative".
- */
-char	*nbr_sign(int number)
-{
-	if (number >= 0)
-		return ("positive");
-	else
-		return ("negative");
 }
 
 /**
