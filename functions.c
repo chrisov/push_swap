@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/17 18:55:41 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:27:32 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	*atoi_array(char **array, int size)
 	if (!array_int)
 		return (0);
 	i = 0;
-	while (array[i + 1])
+	while (array[i])
 	{
-		array_int[i] = ft_atoi(array[i + 1]);
+		array_int[i] = ft_atoi(array[i]);
 		i++;
 	}
 	return (array_int);
