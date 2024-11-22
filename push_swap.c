@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/17 20:02:31 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:24:04 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (0);
+	argv++;
 	int_array = atoi_array(argv, argc - 1);
 	sorted_array = buckets(int_array, argc - 1);
 	a = stack_init(int_array, sorted_array);
