@@ -31,7 +31,7 @@ typedef struct s_stack
 int			main(int argc, char **argv);
 int			ft_atoi(const char *str);
 int			*atoi_array(char **array, int size);
-int			ft_isdigit(int c);
+int			ft_isdigit(char c);
 int			nbr_length(int value);
 int			max_order_of_magnitude(int *array, int array_size);
 int			*buckets(int *array, int array_size);
