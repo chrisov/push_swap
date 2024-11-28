@@ -15,43 +15,47 @@
 /**
  * @brief Allocates space for an (int) 2D matrix.
  * 
- * @param magnitude Order of magnitude of the biggest number of the array.
- * @param col_index Continuously traverses through the array.
+ * @param rows Order of rows of the biggest number of the array.
+ * @param array_index Continuously traverses through the array.
  * 
  * @returns Matrix (int).
  */
-static int	**buckets_alloc(int *array, int array_size, int *total_cols)
+static int	**buckets_alloc(int *array, int array_size, int *bucket_cols)
 {
 	int		**matrix;
-	int		magnitude;
+	int		rows;
 	int		column;
-	int		col_index;
+	int		array_index;
 
-	magnitude = max_order_of_magnitude(array, array_size);
-	total_cols += magnitude - 1;
-	matrix = malloc(magnitude * sizeof(int *));
+	rows = count_of_buckets(array, array_size);
+	matrix = calloc(rows , sizeof(int *));
 	if (!matrix)
 		return (NULL);
-	while (magnitude > 0)
+	bucket_cols += rows - 1;
+	while (rows > 0)
 	{
 		column = 0;
-		col_index = 0;
-		while (col_index < array_size)
+		array_index = 0;
+		while (array_index < array_size)
 		{
-			if (nbr_length(array[col_index]) == magnitude)
+			if (nbr_length(array[array_index]) == rows)
 				column++;
-			col_index++;
+			array_index++;
 		}
 		if (column > 0)
 		{
-			matrix[magnitude - 1] = malloc (column * sizeof(int));
-			if (!matrix[magnitude - 1])
+			matrix[rows - 1] = calloc (column , sizeof(int));
+			if (!matrix[rows - 1])
 				return (NULL);
-			*total_cols-- = column;
+			*bucket_cols-- = column;
 		}
 		else
-			return (NULL);
-		magnitude--;
+			*bucket_cols-- = 0;
+		int j = 0;
+		while (j <= column)
+			printf("%d ", matrix[rows][j++]);
+		printf("\n");
+		rows--;
 	}
 	return (matrix);
 }
@@ -91,32 +95,32 @@ static void	bucket_sort(int *array, int array_size)
 /**
  * @brief Initializes an (int) matrix with the values of an (int) array,
  * where each row contains the numbers of the array of the same order
- * of magnitude.
+ * of rows.
  */
 static void	buckets_init(int *array, int array_size, int **matrix)
 {
-	int	index;
+	int	array_index;
 	int	column;
-	int	magnitude;
+	int	rows;
 
-	magnitude = max_order_of_magnitude(array, array_size);
-	while (magnitude > 0)
+	rows = count_of_buckets(array, array_size);
+	while (rows > 0)
 	{
-		if (matrix[magnitude - 1] == NULL)
+		if (matrix[rows - 1] == NULL)
 		{
-			magnitude--;
+			rows--;
 			continue ;
 		}
-		index = 0;
+		array_index = 0;
 		column = 0;
-		while (index < array_size)
+		while (array_index < array_size)
 		{
-			if (nbr_length(array[index]) == magnitude)
-				matrix[magnitude - 1][column++] = array[index];
-			index++;
+			if (nbr_length(array[array_index]) == rows)
+				matrix[rows - 1][column++] = array[array_index];
+			array_index++;
 		}
-		bucket_sort(matrix[magnitude - 1], column);
-		magnitude--;
+		bucket_sort(matrix[rows - 1], column);
+		rows--;
 	}
 }
 
@@ -150,12 +154,12 @@ static int	*sorted_array(int *array, int **matrix, int row_nbr, int *col_nbr)
  */
 int	*buckets(int *array, int array_size)
 {
-	int	**buckets;
+	int	rows_nbr;
 	int	*cols_nbr;
 	int	*result;
-	int	rows_nbr;
+	int	**buckets;
 
-	rows_nbr = max_order_of_magnitude(array, array_size);
+	rows_nbr = count_of_buckets(array, array_size);
 	cols_nbr = malloc(rows_nbr * sizeof(int));
 	if (!cols_nbr)
 		return (NULL);

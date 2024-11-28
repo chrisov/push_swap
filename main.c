@@ -17,7 +17,7 @@
  */
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
+	// t_stack	*a;
 	int		*int_array;
 	int		*sorted_array;
 
@@ -26,7 +26,9 @@ int	main(int argc, char **argv)
 	argv++;
 	int_array = atoi_array(argv, argc - 1);
 	sorted_array = buckets(int_array, argc - 1);
-	a = stack_init(int_array, argc - 1, sorted_array);
-	print_node(a);
+	while(*sorted_array)
+		printf("%d\n", *sorted_array++);
+	// a = stack_init(int_array, argc - 1, sorted_array);
+	// print_node(a);
 	return (0);
 }

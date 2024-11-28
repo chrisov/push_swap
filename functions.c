@@ -97,25 +97,29 @@ int	nbr_length(int value)
  * @brief Calculates the order of magnitude of the biggest number
  * given an array of ints.
  */
-int	max_order_of_magnitude(int *array, int array_size)
+int	count_of_buckets(int *array, int array_size)
 {
 	int	max;
-	int	result;
+	int	min;
 	int	i;
 
-	result = 0;
 	i = 0;
-	max = abs(array[i]);
+	max = array[i];
+	min = array[i];
 	while (i < array_size)
 	{
-		if (abs(array[i]) > max)
-			max = abs(array[i]);
+		if (array[i] > max)
+			max = array[i];
 		i++;
 	}
-	while (max > 0)
+	i = 0;
+	while (i < array_size)
 	{
-		result++;
-		max /= 10;
+		if (array[i] < min)
+			min = array[i];
+		i++;
 	}
-	return (result);
+	if (min > 0)
+		return (nbr_length(max));
+	return (nbr_length(min) + nbr_length(max));
 }
