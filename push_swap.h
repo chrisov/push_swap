@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/22 23:21:36 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/29 13:43:48 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			*atoi_array(char **array, int size);
 int			ft_isdigit(char c);
 int			nbr_length(int value);
 int			count_of_buckets(int *array, int array_size);
-int			*buckets(int *array, int array_size);
+void		quick_sort(int *arr, int low, int high);
 char		*nbr_sign(int number);
 char		*ft_itoa(int n);
 void		print_node(t_stack *head);

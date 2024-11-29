@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/22 23:20:28 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/29 13:42:57 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	print_node(t_stack *head)			//<-------- PRINTF
 	node = head;
 	while (node)
 	{
-		printf("stack[%d]: value= %d\ttarget= %d\n", node->init_pos, node->nbr, node->target_pos);
+		printf("stack[%d]:\t\tvalue= %d\t\ttarget= %d\n", node->init_pos, node->nbr, node->target_pos);
 		node = node->next_nbr;
 	}
 }
