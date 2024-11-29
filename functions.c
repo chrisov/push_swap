@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 18:06:55 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:15:21 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,28 +67,4 @@ int	*atoi_array(char **array, int size)
 		i++;
 	}
 	return (array_int);
-}
-
-/**
- * @brief Calculates the order of magnitude of a specific number
- * 
- * @param value The number of which the magnitude is to be calculated.
- * 
- * @returns result
- */
-int	nbr_length(int value)
-{
-	int	result;
-
-	result = 0;
-	if (value == 0)
-		return (1);
-	if (value < 0)
-		value *= -1;
-	while (value > 0)
-	{
-		result++;
-		value /= 10;
-	}
-	return (result);
 }

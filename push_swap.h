@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 18:07:42 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:15:03 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 typedef struct s_stack
 {
 	int				nbr;
-	int				length;
 	int				target_pos;
 	struct s_stack	*next_nbr;
 }					t_stack;
@@ -33,7 +32,6 @@ char		*nbr_sign(int number);
 int			ft_atoi(const char *str);
 int			*atoi_array(char **array, int size);
 int			ft_isdigit(char c);
-int			nbr_length(int value);
 void		quick_sort(int *arr, int low, int high);
 void		print_node(t_stack *head);
 void		print_nodes(t_stack *a_head, t_stack *b_head);

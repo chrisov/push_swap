@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 18:06:46 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:14:42 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_stack	*new_node(int value, int target_pos)
 	if (!node)
 		return (NULL);
 	node->nbr = value;
-	node->length = nbr_length(value);
 	node->target_pos = target_pos;
 	node->next_nbr = NULL;
 	return (node);
@@ -138,7 +137,7 @@ void	print_node(t_stack *head)			//<-------- PRINTF
 	node = head;
 	while (node)
 	{
-		printf("[%d]:\t%d\t[->%d]\n",i++, node->nbr, node->target_pos);
+		printf("[%d]:\t%d\t[->%d]\n", i++, node->nbr, node->target_pos);
 		node = node->next_nbr;
 	}
 }
