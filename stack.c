@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 17:21:03 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:02:00 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,24 @@ t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 	return (s);
 }
 
-void	print_node(t_stack *a_head, t_stack *b_head)			//<-------- PRINTF
+// void	sort_stack(t_stack **a, t_stack **b, int target)
+// {
+// 	t_stack	*current;
+// 	int		index;
+
+// 	index = 1;
+// 	current = *a;
+// 	while (current)
+// 	{
+// 		while (current->target_pos != target)
+// 			current = current->next_nbr;
+// 		if (current->target_pos > 2 * current->init_pos)			//<----- rotate (init_pos -1)  times
+
+// 	}
+
+// }
+
+void	print_nodes(t_stack *a_head, t_stack *b_head)			//<-------- PRINTF
 {
 	while (a_head || b_head)
 	{
@@ -114,4 +131,17 @@ void	print_node(t_stack *a_head, t_stack *b_head)			//<-------- PRINTF
 	}
 	printf("_\t\t_\n");
 	printf("a\t\tb\n\n");
+}
+
+void	print_node(t_stack *head)			//<-------- PRINTF
+{
+	t_stack	*node;
+	int		i = 1;
+
+	node = head;
+	while (node)
+	{
+		printf("[%d]:\t%d\t[->%d]\n",i++, node->nbr, node->target_pos);
+		node = node->next_nbr;
+	}
 }

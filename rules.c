@@ -6,12 +6,14 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 16:36:50 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:39:07 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/**
+ * @brief Makes first node the last.
+ */
 void	rotate(t_stack **head)
 {
 	t_stack	*first;
@@ -26,6 +28,9 @@ void	rotate(t_stack **head)
 	first->next_nbr = NULL;
 }
 
+/**
+ * @brief Makes last node the first.
+ */
 void	rev_rotate(t_stack **head)
 {
 	t_stack	*previous;

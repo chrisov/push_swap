@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 17:20:32 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:59:23 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ int	main(int argc, char **argv)
 	quick_sort(sorted_array, 0, argc - 1);
 	a = stack_init(int_array, argc, sorted_array);
 	push_ab(&a, &b);
-	push_ab(&a, &b);
-	push_ab(&a, &b);
-	push_ab(&a, &b);
-	push_ab(&a, &b);
-	print_node(a, b);
+	print_node(a);
 	return (0);
 }

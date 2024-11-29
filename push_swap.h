@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 17:06:04 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:40:39 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ typedef struct s_stack
 t_stack		*new_node(int value, int position, int target_pos);
 t_stack		*stack_init(int *array, int array_size, int *sorted_array);
 char		*nbr_sign(int number);
-char		*ft_itoa(int n);
 int			ft_atoi(const char *str);
 int			*atoi_array(char **array, int size);
 int			ft_isdigit(char c);
 int			nbr_length(int value);
 void		quick_sort(int *arr, int low, int high);
-void		print_node(t_stack *a_head, t_stack *b_head);
+void		print_node(t_stack *head);
+void		print_nodes(t_stack *a_head, t_stack *b_head);
 void		rotate(t_stack **head);
 void		rev_rotate(t_stack **head);
 void		push_ab(t_stack **src_head, t_stack **dst_head);

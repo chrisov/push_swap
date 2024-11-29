@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 12:50:23 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 16:59:02 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:32:30 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,3 @@ void	quick_sort(int *arr, int low, int high)
 	}
 }
 
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	int	arr[13] = {3, 17, 0, 4933, -10000, 17, 666, -1, 990, 22, -3321, 532, 83};
-// 	int i;
-
-// 	quick_sort(arr, 0, 13);
-// 	i = 0;
-// 	while (i < 13)
-// 		printf("%d ", arr[i++]);
-// 	printf("\n");
-// 	return (0);
-// }
