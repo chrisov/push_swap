@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 18:02:00 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:06:46 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	target_position(int value, int *sorted_array)
  * 
  * @returns The newly created node.
  */
-t_stack	*new_node(int value, int position, int target_pos)
+t_stack	*new_node(int value, int target_pos)
 {
 	t_stack	*node;
 
@@ -49,7 +49,6 @@ t_stack	*new_node(int value, int position, int target_pos)
 	if (!node)
 		return (NULL);
 	node->nbr = value;
-	node->init_pos = position;
 	node->length = nbr_length(value);
 	node->target_pos = target_pos;
 	node->next_nbr = NULL;
@@ -71,20 +70,18 @@ t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 {
 	t_stack	*s;
 	t_stack	*s_ptr;
-	int		init_pos;
 	int		target_pos;
 	int		i;
 
 	i = 0;
-	init_pos = 1;
 	target_pos = target_position(array[i], sorted_array);
-	s = new_node(array[i], init_pos++, target_pos);
+	s = new_node(array[i], target_pos);
 	i++;
 	s_ptr = s;
 	while (i < array_size)
 	{
 		target_pos = target_position(array[i], sorted_array);
-		s_ptr->next_nbr = new_node(array[i], init_pos++, target_pos);
+		s_ptr->next_nbr = new_node(array[i], target_pos);
 		s_ptr = s_ptr->next_nbr;
 		i++;
 	}

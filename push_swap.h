@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 17:40:39 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:07:42 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ typedef struct s_stack
 {
 	int				nbr;
 	int				length;
-	int				init_pos;
 	int				target_pos;
 	struct s_stack	*next_nbr;
 }					t_stack;
 
-t_stack		*new_node(int value, int position, int target_pos);
+t_stack		*new_node(int value, int target_pos);
 t_stack		*stack_init(int *array, int array_size, int *sorted_array);
 char		*nbr_sign(int number);
 int			ft_atoi(const char *str);
