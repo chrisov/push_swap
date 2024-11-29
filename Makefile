@@ -1,8 +1,8 @@
 CC = cc
 CFLAGS = -g -Wall -Werror -Wextra
 
-SRCS = main.c stack.c buckets.c functions.c ft_itoa.c\
-# rules.c 
+SRCS = main.c stack.c quick_sort.c functions.c ft_itoa.c\
+# rules.c
 
 OBJS = $(SRCS:.c=.o)
 NAME = push_swap
