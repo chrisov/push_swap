@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 18:14:42 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 20:20:36 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	target_position(int value, int *sorted_array)
  * 
  * @returns The newly created node.
  */
-t_stack	*new_node(int value, int target_pos)
+static t_stack	*new_node(int value, int target_pos)
 {
 	t_stack	*node;
 
@@ -87,26 +87,45 @@ t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 	return (s);
 }
 
-// void	sort_stack(t_stack **a, t_stack **b, int target)
-// {
-// 	t_stack	*current;
-// 	int		index;
+void	sort_stack(t_stack **a, t_stack **b, int target_index)
+{
+	t_stack	*current;
+	int		position;
 
-// 	index = 1;
-// 	current = *a;
-// 	while (current)
-// 	{
-// 		while (current->target_pos != target)
-// 			current = current->next_nbr;
-// 		if (current->target_pos > 2 * current->init_pos)			//<----- rotate (init_pos -1)  times
-
-// 	}
-
-// }
+	while (target_index > 1)
+	{
+		current = *a;
+		position = 1;
+		while (current && current->target_pos != target_index)
+		{
+			current = current->next_nbr;
+			position++;
+		}
+		printf("\"position: %d\"\n", position);
+		while (position != 1)
+		{
+			if (position < target_index / 2)
+			{
+				rotate(a);							//<----- rotate (init_pos - 1)  times
+			}
+			else
+			{
+				rev_rotate(a);
+				// position++;
+			}
+			position--;
+		}
+		print_nodes(*a, *b);
+		push_ab(a, b);
+		print_nodes(*a, *b);
+		printf("\n");
+		target_index--;
+	}
+}
 
 void	print_nodes(t_stack *a_head, t_stack *b_head)			//<-------- PRINTF
 {
-	while (a_head || b_head)
+	while (a_head)
 	{
 		if (!a_head)
 		{
@@ -115,18 +134,18 @@ void	print_nodes(t_stack *a_head, t_stack *b_head)			//<-------- PRINTF
 		}
 		if (!b_head)
 		{
-			printf("%d\t\t\t\n", a_head->nbr);
+			printf("%d\t[->%d] \t\t\n", a_head->nbr, a_head->target_pos);
 			a_head = a_head->next_nbr;
 		}
 		if (a_head && b_head)
 		{
-			printf("%d\t\t%d\n", a_head->nbr, b_head->nbr);
+			printf("%d\t[->%d] \t\t%d\n", a_head->nbr,a_head->target_pos, b_head->nbr);
 			a_head = a_head->next_nbr;
 			b_head = b_head->next_nbr;
 		}
 	}
-	printf("_\t\t_\n");
-	printf("a\t\tb\n\n");
+	printf("_\t\t\t_\n");
+	printf("a\t\t\tb\n\n\n\n");
 }
 
 void	print_node(t_stack *head)			//<-------- PRINTF
