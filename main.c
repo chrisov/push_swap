@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 13:45:02 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:20:32 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	argv++;
-	int_array = atoi_array(argv, argc - 1);
-	sorted_array = atoi_array(argv, argc - 1);
-	quick_sort(sorted_array, 0 , argc - 1);
-	a = stack_init(int_array, argc - 1, sorted_array);
-	print_node(a);
+	argc--;
+	int_array = atoi_array(argv, argc);
+	sorted_array = atoi_array(argv, argc);
+	quick_sort(sorted_array, 0, argc - 1);
+	a = stack_init(int_array, argc, sorted_array);
+	push_ab(&a, &b);
+	push_ab(&a, &b);
+	push_ab(&a, &b);
+	push_ab(&a, &b);
+	push_ab(&a, &b);
+	print_node(a, b);
 	return (0);
 }

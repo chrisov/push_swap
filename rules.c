@@ -6,7 +6,48 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/22 16:50:57 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:36:50 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
+void	rotate(t_stack **head)
+{
+	t_stack	*first;
+	t_stack	*current;
+
+	first = *head;
+	*head = (*head)->next_nbr;
+	current = *head;
+	while (current->next_nbr)
+		current = current->next_nbr;
+	current->next_nbr = first;
+	first->next_nbr = NULL;
+}
+
+void	rev_rotate(t_stack **head)
+{
+	t_stack	*previous;
+	t_stack	*current;
+
+	current = *head;
+	while (current->next_nbr)
+	{
+		previous = current;
+		current = current->next_nbr;
+	}
+	previous->next_nbr = NULL;
+	current->next_nbr = *head;
+	*head = current;
+}
+
+void	push_ab(t_stack **src_head, t_stack **dst_head)
+{
+	t_stack	*new_head;
+
+	new_head = *src_head;
+	*src_head = (*src_head)->next_nbr;
+	new_head->next_nbr = (*dst_head);
+	*dst_head = new_head;
+}

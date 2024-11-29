@@ -6,14 +6,20 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 13:42:57 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:21:03 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * @brief Calculates the target position of each node
+ * @brief Calculates the target position of each node.
+ * 
+ * @param value The value-number of the node.
+ * @param sorted_array Array to be searched for each value that corresponds to
+ * a specific node.
+ * 
+ * @returns The index of the value-number in the sorted array.
  */
 static int	target_position(int value, int *sorted_array)
 {
@@ -85,14 +91,27 @@ t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 	return (s);
 }
 
-void	print_node(t_stack *head)			//<-------- PRINTF
+void	print_node(t_stack *a_head, t_stack *b_head)			//<-------- PRINTF
 {
-	t_stack	*node;
-
-	node = head;
-	while (node)
+	while (a_head || b_head)
 	{
-		printf("stack[%d]:\t\tvalue= %d\t\ttarget= %d\n", node->init_pos, node->nbr, node->target_pos);
-		node = node->next_nbr;
+		if (!a_head)
+		{
+			printf("\t\t\t%d\n", b_head->nbr);
+			b_head = b_head->next_nbr;
+		}
+		if (!b_head)
+		{
+			printf("%d\t\t\t\n", a_head->nbr);
+			a_head = a_head->next_nbr;
+		}
+		if (a_head && b_head)
+		{
+			printf("%d\t\t%d\n", a_head->nbr, b_head->nbr);
+			a_head = a_head->next_nbr;
+			b_head = b_head->next_nbr;
+		}
 	}
+	printf("_\t\t_\n");
+	printf("a\t\tb\n\n");
 }

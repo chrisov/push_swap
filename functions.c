@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimitris <dimitris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/22 23:21:26 by dimitris         ###   ########.fr       */
+/*   Updated: 2024/11/29 16:23:04 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,35 +91,4 @@ int	nbr_length(int value)
 		value /= 10;
 	}
 	return (result);
-}
-
-/**
- * @brief Calculates the order of magnitude of the biggest number
- * given an array of ints.
- */
-int	count_of_buckets(int *array, int array_size)
-{
-	int	max;
-	int	min;
-	int	i;
-
-	i = 0;
-	max = array[i];
-	min = array[i];
-	while (i < array_size)
-	{
-		if (array[i] > max)
-			max = array[i];
-		i++;
-	}
-	i = 0;
-	while (i < array_size)
-	{
-		if (array[i] < min)
-			min = array[i];
-		i++;
-	}
-	if (min > 0)
-		return (nbr_length(max));
-	return (nbr_length(min) + nbr_length(max));
 }
