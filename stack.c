@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/30 14:16:50 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/30 14:35:38 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ static int	target_position(int value, int *sorted_array)
 	while (sorted_array[i++] != value)
 		target_index++;
 	return (target_index);
+}
+
+static int	number_of_duplicates(t_stack *stack, int value)
+{
+	int	result;
+
+	result = 0;
+	while (stack)
+	{
+		if (stack->nbr == value)
+			result++;
+		stack = stack->next_nbr;
+	}
+	return (result);
 }
 
 /**
@@ -68,10 +82,10 @@ static t_stack	*new_node(int value, int target_pos)
 t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 {
 	t_stack	*s;
-	t_stack	*previous;
 	t_stack	*current;
 	int		target_pos;
 	int		i;
+	int		duplicates;
 
 	i = 0;
 	target_pos = target_position(array[i], sorted_array);
@@ -80,18 +94,8 @@ t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 	current = s;
 	while (i < array_size)
 	{
-		previous = s;
-		while (previous)
-		{
-			if (previous->nbr == array[i])
-			{
-				target_pos = previous->target_pos + 1;
-				break ;
-			}
-			else
-				target_pos = target_position(array[i], sorted_array);
-			previous = previous->next_nbr;
-		}
+		duplicates = number_of_duplicates(s, array[i]);
+		target_pos = target_position(array[i], sorted_array) + duplicates;
 		current->next_nbr = new_node(array[i], target_pos);
 		current = current->next_nbr;
 		i++;
