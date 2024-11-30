@@ -6,20 +6,20 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 18:15:21 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:18:21 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_isdigit(char c)
+static int	ft_isdigit(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+static int	ft_atoi(const char *str)
 {
 	int	res;
 	int	count;
@@ -67,4 +67,25 @@ int	*atoi_array(char **array, int size)
 		i++;
 	}
 	return (array_int);
+}
+
+/**
+ * @brief Calculates the target position of each node.
+ * 
+ * @param value The value-number of the node.
+ * @param sorted_array Array to be searched for each value that corresponds to
+ * a specific node.
+ * 
+ * @returns The index of the value-number in the sorted array.
+ */
+int	target_position(int value, int *sorted_array)
+{
+	int	i;
+	int	target_index;
+
+	i = 0;
+	target_index = 1;
+	while (sorted_array[i++] != value)
+		target_index++;
+	return (target_index);
 }

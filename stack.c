@@ -6,32 +6,11 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/30 14:35:38 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:20:22 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/**
- * @brief Calculates the target position of each node.
- * 
- * @param value The value-number of the node.
- * @param sorted_array Array to be searched for each value that corresponds to
- * a specific node.
- * 
- * @returns The index of the value-number in the sorted array.
- */
-static int	target_position(int value, int *sorted_array)
-{
-	int	i;
-	int	target_index;
-
-	i = 0;
-	target_index = 1;
-	while (sorted_array[i++] != value)
-		target_index++;
-	return (target_index);
-}
 
 static int	number_of_duplicates(t_stack *stack, int value)
 {
@@ -103,12 +82,16 @@ t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 	return (s);
 }
 
-void	sort_stack(t_stack **a, t_stack **b, int target_index)
+// static void	rotations()
+
+int	sort_stack(t_stack **a, t_stack **b, int target_index)
 {
 	t_stack	*current;
 	int		position;
 	int		iterations;
+	int		num_of_moves;
 
+	num_of_moves = 0;
 	while (target_index > 0)
 	{
 		current = *a;
@@ -118,9 +101,9 @@ void	sort_stack(t_stack **a, t_stack **b, int target_index)
 			current = current->next_nbr;
 			position++;
 		}
-		if (position < target_index / 2)
+		if (position != 1 && position < target_index / 2)
 			iterations = position;
-		else
+		if (position != 1 && position > target_index / 2)
 			iterations = target_index + 2 - position;
 		while (iterations > 1)
 		{
@@ -129,14 +112,13 @@ void	sort_stack(t_stack **a, t_stack **b, int target_index)
 			else
 				rev_rotate(a);
 			iterations--;
+			num_of_moves++;
 		}
-		printf("\"position: %d\"\n", position);
-		print_nodes(*a, *b);
 		push_ab(a, b);
-		print_nodes(*a, *b);
-		printf("\n\n");
+		num_of_moves++;
 		target_index--;
 	}
+	return (num_of_moves);
 }
 
 void	print_nodes(t_stack *a_head, t_stack *b_head)			//<-------- PRINTF
