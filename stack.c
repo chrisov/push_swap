@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/30 16:20:22 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:48:58 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	sort_stack(t_stack **a, t_stack **b, int target_index)
 	int		num_of_moves;
 
 	num_of_moves = 0;
-	while (target_index > 0)
+	while (*a)
 	{
 		current = *a;
 		position = 1;
@@ -101,21 +101,20 @@ int	sort_stack(t_stack **a, t_stack **b, int target_index)
 			current = current->next_nbr;
 			position++;
 		}
-		if (position != 1 && position < target_index / 2)
-			iterations = position;
-		if (position != 1 && position > target_index / 2)
-			iterations = target_index + 2 - position;
-		while (iterations > 1)
+		if (position > 1 && position <= target_index / 2)
+			iterations = position - 1;
+		if (position > target_index / 2)
+			iterations = target_index + 1 - position;
+		num_of_moves += iterations + 1;
+		while (iterations > 0)
 		{
-			if (position < target_index / 2)
-				rotate(a);							//<----- rotate (init_pos - 1)  times
+			if (position <= target_index / 2)
+				rotate(a);
 			else
 				rev_rotate(a);
 			iterations--;
-			num_of_moves++;
 		}
 		push_ab(a, b);
-		num_of_moves++;
 		target_index--;
 	}
 	return (num_of_moves);
