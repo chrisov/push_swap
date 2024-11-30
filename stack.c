@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/30 16:48:58 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/30 17:11:44 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,37 @@ t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 	return (s);
 }
 
-// static void	rotations()
+static int	rotations(t_stack **a, t_stack *ptr, int position, int target_index)
+{
+	int	num_of_moves;
+	int	iterations;
+
+	num_of_moves = 0;
+	while (ptr && ptr->target_pos != target_index)
+	{
+		ptr = ptr->next_nbr;
+		position++;
+	}
+	if (position > 1 && position <= target_index / 2)
+		iterations = position - 1;
+	if (target_index != 1 && position > target_index / 2)
+		iterations = target_index + 1 - position;
+	while (iterations > 0)
+	{
+		if (position <= target_index / 2)
+			rotate(a);
+		else
+			rev_rotate(a);
+		iterations--;
+		num_of_moves++;
+	}
+	return (num_of_moves);
+}
 
 int	sort_stack(t_stack **a, t_stack **b, int target_index)
 {
 	t_stack	*current;
 	int		position;
-	int		iterations;
 	int		num_of_moves;
 
 	num_of_moves = 0;
@@ -96,25 +120,9 @@ int	sort_stack(t_stack **a, t_stack **b, int target_index)
 	{
 		current = *a;
 		position = 1;
-		while (current && current->target_pos != target_index)
-		{
-			current = current->next_nbr;
-			position++;
-		}
-		if (position > 1 && position <= target_index / 2)
-			iterations = position - 1;
-		if (position > target_index / 2)
-			iterations = target_index + 1 - position;
-		num_of_moves += iterations + 1;
-		while (iterations > 0)
-		{
-			if (position <= target_index / 2)
-				rotate(a);
-			else
-				rev_rotate(a);
-			iterations--;
-		}
+		num_of_moves += rotations(a, current, position, target_index);
 		push_ab(a, b);
+		num_of_moves++;
 		target_index--;
 	}
 	return (num_of_moves);
