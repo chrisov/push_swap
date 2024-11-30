@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 18:32:12 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/30 15:05:13 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		print_nodes(t_stack *a_head, t_stack *b_head);
 void		rotate(t_stack **head);
 void		rev_rotate(t_stack **head);
 void		push_ab(t_stack **src_head, t_stack **dst_head);
-void		sort_stack(t_stack **a, t_stack **b, int target);
+int			sort_stack(t_stack **a, t_stack **b, int target);
 
 
 #endif
