@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 20:20:36 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/11/30 14:16:50 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static t_stack	*new_node(int value, int target_pos)
 t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 {
 	t_stack	*s;
-	t_stack	*s_ptr;
+	t_stack	*previous;
+	t_stack	*current;
 	int		target_pos;
 	int		i;
 
@@ -76,12 +77,23 @@ t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 	target_pos = target_position(array[i], sorted_array);
 	s = new_node(array[i], target_pos);
 	i++;
-	s_ptr = s;
+	current = s;
 	while (i < array_size)
 	{
-		target_pos = target_position(array[i], sorted_array);
-		s_ptr->next_nbr = new_node(array[i], target_pos);
-		s_ptr = s_ptr->next_nbr;
+		previous = s;
+		while (previous)
+		{
+			if (previous->nbr == array[i])
+			{
+				target_pos = previous->target_pos + 1;
+				break ;
+			}
+			else
+				target_pos = target_position(array[i], sorted_array);
+			previous = previous->next_nbr;
+		}
+		current->next_nbr = new_node(array[i], target_pos);
+		current = current->next_nbr;
 		i++;
 	}
 	return (s);
@@ -91,8 +103,9 @@ void	sort_stack(t_stack **a, t_stack **b, int target_index)
 {
 	t_stack	*current;
 	int		position;
+	int		iterations;
 
-	while (target_index > 1)
+	while (target_index > 0)
 	{
 		current = *a;
 		position = 1;
@@ -101,24 +114,23 @@ void	sort_stack(t_stack **a, t_stack **b, int target_index)
 			current = current->next_nbr;
 			position++;
 		}
-		printf("\"position: %d\"\n", position);
-		while (position != 1)
+		if (position < target_index / 2)
+			iterations = position;
+		else
+			iterations = target_index + 2 - position;
+		while (iterations > 1)
 		{
 			if (position < target_index / 2)
-			{
 				rotate(a);							//<----- rotate (init_pos - 1)  times
-			}
 			else
-			{
 				rev_rotate(a);
-				// position++;
-			}
-			position--;
+			iterations--;
 		}
+		printf("\"position: %d\"\n", position);
 		print_nodes(*a, *b);
 		push_ab(a, b);
 		print_nodes(*a, *b);
-		printf("\n");
+		printf("\n\n");
 		target_index--;
 	}
 }
