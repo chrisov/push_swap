@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 19:11:45 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/02 13:50:15 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,19 @@ void	push_ab(t_stack **src_head, t_stack **dst_head)
 	*src_head = (*src_head)->next_nbr;
 	new_head->next_nbr = (*dst_head);
 	*dst_head = new_head;
+}
+
+/**
+ * @brief Swaps the first with the second node of the stack.
+ */
+void	swap(t_stack **head)
+{
+	t_stack	*first;
+	t_stack	*second;
+
+	first = *head;
+	second = (*head)->next_nbr;
+	first->next_nbr = second->next_nbr;
+	second->next_nbr = first;
+	*head = second;
 }
