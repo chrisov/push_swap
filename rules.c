@@ -26,6 +26,7 @@ void	rotate(t_stack **head)
 		current = current->next_nbr;
 	current->next_nbr = first;
 	first->next_nbr = NULL;
+	write(STDOUT_FILENO, "ra\n", 3);
 }
 
 /**
@@ -45,6 +46,7 @@ void	rev_rotate(t_stack **head)
 	previous->next_nbr = NULL;
 	current->next_nbr = *head;
 	*head = current;
+	write(STDOUT_FILENO, "rra\n", 4);
 }
 
 void	push_ab(t_stack **src_head, t_stack **dst_head)
@@ -55,4 +57,5 @@ void	push_ab(t_stack **src_head, t_stack **dst_head)
 	*src_head = (*src_head)->next_nbr;
 	new_head->next_nbr = (*dst_head);
 	*dst_head = new_head;
+	write(STDOUT_FILENO, "pa\n", 3);
 }
