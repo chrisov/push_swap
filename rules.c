@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/02 13:50:15 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:58:00 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	rotate(t_stack **head)
 		current = current->next_nbr;
 	current->next_nbr = first;
 	first->next_nbr = NULL;
+	write(STDOUT_FILENO, "ra\n", 3);
 }
 
 /**
@@ -45,6 +46,7 @@ void	rev_rotate(t_stack **head)
 	previous->next_nbr = NULL;
 	current->next_nbr = *head;
 	*head = current;
+	write(STDOUT_FILENO, "rra\n", 4);
 }
 
 void	push_ab(t_stack **src_head, t_stack **dst_head)
@@ -55,6 +57,7 @@ void	push_ab(t_stack **src_head, t_stack **dst_head)
 	*src_head = (*src_head)->next_nbr;
 	new_head->next_nbr = (*dst_head);
 	*dst_head = new_head;
+	write(STDOUT_FILENO, "pa\n", 3);
 }
 
 /**
@@ -70,4 +73,6 @@ void	swap(t_stack **head)
 	first->next_nbr = second->next_nbr;
 	second->next_nbr = first;
 	*head = second;
+	write(STDOUT_FILENO, "sa\n", 3);
+
 }
