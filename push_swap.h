@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/02 16:53:14 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:59:12 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ typedef struct s_stack
 t_stack		*stack_init(int *array, int array_size, int *sorted_array);
 int			*atoi_array(char **array, int size);
 int			target_position(int value, int *sorted_array);
-int			sort_stack(t_stack **a, t_stack **b, int target);
+void		sort_stack(t_stack **a, t_stack **b, int target);
 void		quick_sort(int *arr, int low, int high);
 void		print_node(t_stack *head);
 void		print_nodes(t_stack *a_head, t_stack *b_head);
 void		rotate(t_stack **head);
 void		rev_rotate(t_stack **head);
 void		push_ab(t_stack **src_head, t_stack **dst_head);
-void		swap(t_stack **head);
+void		swap(t_stack **head); 
 
 
 #endif

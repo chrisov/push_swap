@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/30 17:11:44 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/03 13:01:12 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 	return (s);
 }
 
-static int	rotations(t_stack **a, t_stack *ptr, int position, int target_index)
+static void	rotations(t_stack **a, t_stack *ptr, int target_index)
 {
-	int	num_of_moves;
 	int	iterations;
+	int	position;
 
-	num_of_moves = 0;
+	position = 1;
 	while (ptr && ptr->target_pos != target_index)
 	{
 		ptr = ptr->next_nbr;
@@ -104,28 +104,20 @@ static int	rotations(t_stack **a, t_stack *ptr, int position, int target_index)
 		else
 			rev_rotate(a);
 		iterations--;
-		num_of_moves++;
 	}
-	return (num_of_moves);
 }
 
-int	sort_stack(t_stack **a, t_stack **b, int target_index)
+void	sort_stack(t_stack **a, t_stack **b, int target_index)
 {
 	t_stack	*current;
-	int		position;
-	int		num_of_moves;
 
-	num_of_moves = 0;
 	while (*a)
 	{
 		current = *a;
-		position = 1;
-		num_of_moves += rotations(a, current, position, target_index);
+		rotations(a, current, target_index);
 		push_ab(a, b);
-		num_of_moves++;
 		target_index--;
 	}
-	return (num_of_moves);
 }
 
 void	print_nodes(t_stack *a_head, t_stack *b_head)			//<-------- PRINTF
