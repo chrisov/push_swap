@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 	t_stack	*b;
 	int		*int_array;
 	int		*sorted_array;
-	int		result;
 
 	if (argc == 1)
 		return (0);
@@ -33,12 +32,11 @@ int	main(int argc, char **argv)
 	a = stack_init(int_array, argc, sorted_array);
 	b = NULL;
 	print_nodes(a, b);
-	result = sort_stack(&a, &b, argc);
+	sort_stack(&a, &b, argc);
 	while (b)
 	{
 		printf("%d\n", b->nbr);
 		b = b->next_nbr;
 	}
-	printf("\nNumber of moves: %d\n", result);
 	return (0);
 }

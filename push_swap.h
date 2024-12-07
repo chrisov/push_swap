@@ -19,17 +19,17 @@
 # include <unistd.h>
 # include <limits.h>
 
-typedef struct s_stack
+typedef struct	s_stack
 {
 	int				nbr;
 	int				target_pos;
 	struct s_stack	*next_nbr;
-}					t_stack;
+}				t_stack;
 
 t_stack		*stack_init(int *array, int array_size, int *sorted_array);
 int			*atoi_array(char **array, int size);
 int			target_position(int value, int *sorted_array);
-int			sort_stack(t_stack **a, t_stack **b, int target);
+void		sort_stack(t_stack **a, t_stack **b, int target);
 void		quick_sort(int *arr, int low, int high);
 void		print_node(t_stack *head);
 void		print_nodes(t_stack *a_head, t_stack *b_head);
