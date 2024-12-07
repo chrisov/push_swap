@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:10:26 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/30 17:11:44 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/03 13:01:12 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_stack	*stack_init(int *array, int array_size, int *sorted_array)
 static void	rotations(t_stack **a, t_stack *ptr, int target_index)
 {
 	int	iterations;
-	int position;
+	int	position;
 
 	position = 1;
 	while (ptr && ptr->target_pos != target_index)

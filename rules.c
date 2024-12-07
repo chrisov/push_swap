@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/29 19:11:45 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:58:00 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,4 @@ void	push_ab(t_stack **src_head, t_stack **dst_head)
 	*src_head = (*src_head)->next_nbr;
 	new_head->next_nbr = (*dst_head);
 	*dst_head = new_head;
-	write(STDOUT_FILENO, "pa\n", 3);
 }

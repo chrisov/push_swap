@@ -6,12 +6,14 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/11/30 16:18:21 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/03 13:03:31 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/**
+ * @note Needed for atoi. 
+ */
 static int	ft_isdigit(char c)
 {
 	if (c >= '0' && c <= '9')
@@ -72,9 +74,9 @@ int	*atoi_array(char **array, int size)
 /**
  * @brief Calculates the target position of each node.
  * 
- * @param value The value-number of the node.
- * @param sorted_array Array to be searched for each value that corresponds to
- * a specific node.
+ * @param value The node's value.
+ * @param sorted_array Array to be searched for each value, the index of which 
+ * corresponds to the node.
  * 
  * @returns The index of the value-number in the sorted array.
  */
