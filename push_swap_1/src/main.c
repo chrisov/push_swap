@@ -10,51 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-/**
- * @brief Makes first node the last.
- */
-void	rotate(t_stack **head)
+#include "../include/push_swap.h"
+
+int	main(int argc, char **argv)
 {
-	t_stack	*first;
-	t_stack	*current;
+	t_stack	*a;
+	t_stack	*temp;
 
-	first = *head;
-	*head = (*head)->next_nbr;
-	current = *head;
-	while (current->next_nbr)
-		current = current->next_nbr;
-	current->next_nbr = first;
-	first->next_nbr = NULL;
-	write(STDOUT_FILENO, "ra\n", 3);
-}
-
-/**
- * @brief Makes last node the first.
- */
-void	rev_rotate(t_stack **head)
-{
-	t_stack	*previous;
-	t_stack	*current;
-
-	current = *head;
-	while (current->next_nbr)
+	if (argc > 1)
 	{
-		previous = current;
-		current = current->next_nbr;
+		temp = new_node(ft_atoi(*argv));
+		a = temp;
+		(*argv)++;
+		while (*argv)
+		{
+			temp = new_node(ft_atoi(*argv));
+			(*argv)++;
+		}
+		while (a)
+		{
+			printf("%d ", a->nbr);
+			a = a->next_nbr;
+		}
 	}
-	previous->next_nbr = NULL;
-	current->next_nbr = *head;
-	*head = current;
-	write(STDOUT_FILENO, "rra\n", 4);
-}
-
-void	push_ab(t_stack **src_head, t_stack **dst_head)
-{
-	t_stack	*new_head;
-
-	new_head = *src_head;
-	*src_head = (*src_head)->next_nbr;
-	new_head->next_nbr = (*dst_head);
-	*dst_head = new_head;
 }

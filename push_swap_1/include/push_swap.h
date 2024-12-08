@@ -26,17 +26,7 @@ typedef struct	s_stack
 	struct s_stack	*next_nbr;
 }				t_stack;
 
-t_stack		*stack_init(int *array, int array_size, int *sorted_array);
-int			*atoi_array(char **array, int size);
-int			target_position(int value, int *sorted_array);
-void		sort_stack(t_stack **a, t_stack **b, int target);
-void		quick_sort(int *arr, int low, int high);
-void		print_node(t_stack *head);
-void		print_nodes(t_stack *a_head, t_stack *b_head);
-void		rotate(t_stack **head);
-void		rev_rotate(t_stack **head);
-void		push_ab(t_stack **src_head, t_stack **dst_head);
-void		swap(t_stack **head); 
-
+t_stack	*new_node(int value);
+int		ft_atoi(const char *str);
 
 #endif

@@ -1,9 +1,18 @@
+#
+#
 CC = cc
 CFLAGS = -g -Wall -Werror -Wextra
 
-SRCS = main.c stack.c quick_sort.c functions.c rules.c
+SRCDIR = ./src
+INCDIR = ./include
+OBJDIR = ./obj
 
-OBJS = $(SRCS:.c=.o)
+SRCS = $(SRCDIR)/main.c\
+		$(SRCDIR)/stack.c\
+		$(SRCDIR)/functions.c\
+		# $(SRCDIR)/rules.c
+
+OBJS = $(SRCS:$(SRCDIR)\%.c=$(OBJDIR)\%.o)
 NAME = push_swap
 
 all: $(NAME)
@@ -15,11 +24,15 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-%.o: %.c
+%$(OBJDIR)\%.o: $(SRCDIR)\%.c
+	mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+run: all
+	./$(NAME)
+
 clean:
-	rm -f $(NAME) $(OBJS)
+	rm -f $(OBJDIR)/$(OBJS)
 	@echo "Cleaned up all build files."
 
 fclean: clean
