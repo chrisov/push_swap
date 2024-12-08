@@ -57,14 +57,18 @@ void	push_ab(t_stack **src_head, t_stack **dst_head)
 	*src_head = (*src_head)->next_nbr;
 	new_head->next_nbr = (*dst_head);
 	*dst_head = new_head;
+	write(STDOUT_FILENO, "pa\n", 3);
 }
 
 void	swap(t_stack **head)
 {
-	t_stack *temp;
+	t_stack *first;
+	t_stack	*second;
 
-	temp = *head;
-	(*head) = (*head)->next_nbr;
-	(*head)->next_nbr = temp;
-	temp->next_nbr = temp->next_nbr->next_nbr;
+	first = (*head);
+	second = (*head)->next_nbr;
+	first->next_nbr = second->next_nbr;
+	second->next_nbr = first;
+	*head = second;
+	write(STDOUT_FILENO, "sa\n", 3);
 }

@@ -23,3 +23,45 @@ t_stack	*new_node(int value)
 	node->next_nbr = NULL;
 	return (node);
 }
+
+void	sort_stack_of_three(t_stack **head)
+{
+	int	first;
+	int	second;
+	int	third;
+
+	first = (*head)->nbr;
+	second = (*head)->next_nbr->nbr;
+	third = (*head)->next_nbr->next_nbr->nbr;
+	if (second > first && second > third)
+	{
+		rev_rotate(head);
+		if (first < third)
+			swap(head);
+	}
+	if (first > second && first > third)
+	{
+		if (second > third)
+		{
+			swap(head);
+			rev_rotate(head);
+		}
+		else
+			rotate(head);
+	}
+	if (third > second && third > first && first > second)
+		swap(head);
+}
+
+void	print_node(t_stack *head)			//<-------- PRINTF
+{
+	t_stack	*node;
+
+	node = head;
+	while (node)
+	{
+		printf("%d -> ", node->nbr);
+		node = node->next_nbr;
+	}
+	printf("NULL\n");
+}

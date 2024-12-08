@@ -27,5 +27,11 @@ typedef struct	s_stack
 
 t_stack	*new_node(int value);
 int		ft_atoi(const char *str);
+void	rotate(t_stack **head);
+void	rev_rotate(t_stack **head);
+void	swap(t_stack **head);
+void	push_ab(t_stack **src_head, t_stack **dst_head);
+void	sort_stack_of_three(t_stack **head);
+void	print_node(t_stack *head);			//<-------- PRINTF
 
 #endif
