@@ -28,16 +28,20 @@ $(NAME): $(OBJS)
 	mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-run: all
-	./$(NAME)
+run: ./$(NAME) 
+	@ARGS="$(filter-out $@,$(MAKECMDGOALS))";\
+	./$(NAME) $$ARGS
 
 clean:
-	rm -f $(OBJDIR)/$(OBJS)
+	rm -f $(OBJDIR)/*.o
 	@echo "Cleaned up all build files."
 
 fclean: clean
 		rm -f $(NAME)
 	
 re: fclean all
+
+%:
+	@:
 
 .PHONY: all clean fclean re

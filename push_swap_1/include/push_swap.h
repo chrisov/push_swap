@@ -22,7 +22,6 @@
 typedef struct	s_stack
 {
 	int				nbr;
-	int				target_pos;
 	struct s_stack	*next_nbr;
 }				t_stack;
 

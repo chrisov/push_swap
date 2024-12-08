@@ -19,18 +19,21 @@ int	main(int argc, char **argv)
 
 	if (argc > 1)
 	{
+		argv++;
 		temp = new_node(ft_atoi(*argv));
 		a = temp;
-		(*argv)++;
+		argv++;
 		while (*argv)
 		{
-			temp = new_node(ft_atoi(*argv));
-			(*argv)++;
+			temp->next_nbr = new_node(ft_atoi(*argv));
+			temp = temp->next_nbr;
+			argv++;
 		}
 		while (a)
 		{
 			printf("%d ", a->nbr);
 			a = a->next_nbr;
 		}
+		printf("\n");
 	}
 }
