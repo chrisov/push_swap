@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules.c                                            :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/03 12:58:00 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:19:11 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,19 @@ void	stack_init(t_stack **head, char **array)
 	}
 }
 
+int	num_of_nodes(t_stack *head)
+{
+	int	result;
+
+	result = 0;
+	while (head)
+	{
+		result++;
+		head = head->next_nbr;
+	}
+	return (result);
+}
+
 void	sort_stack_of_three(t_stack **head)
 {
 	int	first;
@@ -108,7 +121,7 @@ void	print_node(t_stack *head)			//<-------- PRINTF
 		node = head;
 		while (node)
 		{
-			printf("(%d)%d -> ",node->cost, node->nbr);
+			printf("%d -> ", node->nbr);
 			node = node->next_nbr;
 		}
 		printf("NULL\n");

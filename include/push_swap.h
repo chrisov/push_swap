@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/03 12:59:12 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:01:24 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 typedef struct	s_stack
 {
 	int				nbr;
-	int				index;
 	int				cost;
 	struct s_stack	*next_nbr;
 }				t_stack;
@@ -35,6 +34,8 @@ void	sort_stack_of_three(t_stack **head);
 void	print_node(t_stack *head);			//<-------- PRINTF
 void	stack_init(t_stack **stack, char **array);
 int		num_of_nodes(t_stack *head);
-void	node_cost_calc(t_stack **src_node, t_stack **dest_node);
+int		cheapest_node(t_stack *src_node, t_stack *dest_node);
+int		stack_min(t_stack *head);
+int		stack_max(t_stack *head);
 
 #endif
