@@ -22,16 +22,19 @@
 typedef struct	s_stack
 {
 	int				nbr;
+	int				index;
+	int				cost;
 	struct s_stack	*next_nbr;
 }				t_stack;
 
-t_stack	*new_node(int value);
-int		ft_atoi(const char *str);
 void	rotate(t_stack **head);
 void	rev_rotate(t_stack **head);
 void	swap(t_stack **head);
 void	push_ab(t_stack **src_head, t_stack **dst_head);
 void	sort_stack_of_three(t_stack **head);
 void	print_node(t_stack *head);			//<-------- PRINTF
+void	stack_init(t_stack **stack, char **array);
+int		num_of_nodes(t_stack *head);
+void	node_cost_calc(t_stack **src_node, t_stack **dest_node);
 
 #endif

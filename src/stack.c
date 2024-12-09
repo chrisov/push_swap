@@ -12,7 +12,35 @@
 
 #include "../include/push_swap.h"
 
-t_stack	*new_node(int value)
+static int	ft_atoi(const char *str)
+{
+	int	res;
+	int	count;
+	int	sign;
+
+	res = 0;
+	count = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	while (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign *= -1;
+		if (count > 0)
+			return (0);
+		str++;
+		count++;
+	}
+	while (*str && *str >= '0' && *str <= '9')
+	{
+		res = res * 10 + (*str - '0');
+		str++;
+	}
+	return (sign * res);
+}
+
+static t_stack	*new_node(int value)
 {
 	t_stack	*node;
 
@@ -22,6 +50,22 @@ t_stack	*new_node(int value)
 	node->nbr = value;
 	node->next_nbr = NULL;
 	return (node);
+}
+
+void	stack_init(t_stack **head, char **array)
+{
+	t_stack	*current;
+
+	array++;
+	(*head) = new_node(ft_atoi(*array));
+	current = (*head);
+	array++;
+	while (*array)
+	{
+		current->next_nbr = new_node(ft_atoi(*array));
+		current = current->next_nbr;
+		array++;
+	}
 }
 
 void	sort_stack_of_three(t_stack **head)
@@ -57,11 +101,16 @@ void	print_node(t_stack *head)			//<-------- PRINTF
 {
 	t_stack	*node;
 
-	node = head;
-	while (node)
+	if (!head)
+		printf("NULL");
+	else
 	{
-		printf("%d -> ", node->nbr);
-		node = node->next_nbr;
+		node = head;
+		while (node)
+		{
+			printf("(%d)%d -> ",node->cost, node->nbr);
+			node = node->next_nbr;
+		}
+		printf("NULL\n");
 	}
-	printf("NULL\n");
 }

@@ -12,30 +12,43 @@
 
 #include "../include/push_swap.h"
 
-int	ft_atoi(const char *str)
+void	node_cost_calc(t_stack **src_node, t_stack **dest_node)
 {
-	int	res;
-	int	count;
-	int	sign;
+	int		src_index;
+	int		dest_pos;
+	t_stack	*current_dest;
 
-	res = 0;
-	count = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	while (*str == '-' || *str == '+')
+	src_index = 0;
+	while (src_node)
 	{
-		if (*str == '-')
-			sign *= -1;
-		if (count > 0)
-			return (0);
-		str++;
-		count++;
+		dest_pos = 0;
+		current_dest = *dest_node;
+		while (current_dest &&  (*src_node)->nbr < current_dest->nbr)
+		{
+			dest_pos++;
+			current_dest = current_dest->next_nbr;
+		}
+		(*src_node)->index = src_index;
+		(*src_node)->cost = src_index++ + dest_pos + 1;
+		(*src_node) = (*src_node)->next_nbr;
 	}
-	while (*str && *str >= '0' && *str <= '9')
-	{
-		res = res * 10 + (*str - '0');
-		str++;
-	}
-	return (sign * res);
 }
+
+int	num_of_nodes(t_stack *head)
+{
+	int	result;
+
+	result = 0;
+	while (head)
+	{
+		result++;
+		head = head->next_nbr;
+	}
+	return (result);
+}
+
+// void	push_descend_order(t_stack **a, t_stack **b)
+// {
+// 	push_ab(a, b);
+// 	push_ab(a, b);
+// }

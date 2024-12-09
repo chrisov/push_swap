@@ -15,23 +15,26 @@
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
-	t_stack	*head;
+	t_stack	*b;
 
 	if (argc > 1)
 	{
-		argv++;
-		head = new_node(ft_atoi(*argv));
-		a = head;
-		argv++;
-		while (*argv)
+		stack_init(&a, argv);
+		b = NULL;
+		printf("a[%d]: ", num_of_nodes(a)); print_node(a);
+		printf("b[%d]: ", num_of_nodes(b)); print_node(b);
+		printf("\n");
+
+		push_ab(&a, &b);
+		push_ab(&a, &b);
+
+		while (num_of_nodes(a) >= 3)
 		{
-			a->next_nbr = new_node(ft_atoi(*argv));
-			a = a->next_nbr;
-			argv++;
+			node_cost_calc(&a, &b);
+			num_of_nodes(a);
 		}
-		a = head;
-		print_node(a);
-		sort_stack_of_three(&head);
-		print_node(head);
+		printf("a[%d]: ", num_of_nodes(a)); print_node(a);
+		printf("b[%d]: ", num_of_nodes(b)); print_node(b);
+
 	}
 }
