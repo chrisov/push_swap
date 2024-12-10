@@ -23,7 +23,7 @@ typedef struct	s_stack
 {
 	int				nbr;
 	int				index;
-	int				cost;
+	int				target_position;
 	struct s_stack	*next_nbr;
 }				t_stack;
 
@@ -35,6 +35,10 @@ void	sort_stack_of_three(t_stack **head);
 void	print_node(t_stack *head);			//<-------- PRINTF
 void	stack_init(t_stack **stack, char **array);
 int		num_of_nodes(t_stack *head);
-void	node_cost_calc(t_stack **src_node, t_stack **dest_node);
+int		max_value_node(t_stack *head);
+int		max_index_node(t_stack *head);
+int		min_value_node(t_stack *head);
+void	target_position(t_stack *src, t_stack *dst);
+int		cost_calc(t_stack *src, t_stack *dest);
 
 #endif

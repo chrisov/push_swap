@@ -62,9 +62,8 @@ void	stack_init(t_stack **head, char **array)
 	array++;
 	while (*array)
 	{
-		current->next_nbr = new_node(ft_atoi(*array));
+		current->next_nbr = new_node(ft_atoi(*array++));
 		current = current->next_nbr;
-		array++;
 	}
 }
 
@@ -97,6 +96,19 @@ void	sort_stack_of_three(t_stack **head)
 		swap(head);
 }
 
+int	num_of_nodes(t_stack *head)
+{
+	int	result;
+
+	result = 0;
+	while (head)
+	{
+		result++;
+		head = head->next_nbr;
+	}
+	return (result);
+}
+
 void	print_node(t_stack *head)			//<-------- PRINTF
 {
 	t_stack	*node;
@@ -108,7 +120,7 @@ void	print_node(t_stack *head)			//<-------- PRINTF
 		node = head;
 		while (node)
 		{
-			printf("(%d)%d -> ",node->cost, node->nbr);
+			printf("%d[->%d] -> ", node->nbr, node->target_position);
 			node = node->next_nbr;
 		}
 		printf("NULL\n");

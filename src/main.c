@@ -22,17 +22,20 @@ int	main(int argc, char **argv)
 		stack_init(&a, argv);
 		b = NULL;
 		printf("a[%d]: ", num_of_nodes(a)); print_node(a);
-		printf("b[%d]: ", num_of_nodes(b)); print_node(b);
-		printf("\n");
-
+		printf("b[%d]: ", num_of_nodes(b)); print_node(b); printf("\n");
 		push_ab(&a, &b);
 		push_ab(&a, &b);
+		push_ab(&a, &b);
 
-		while (num_of_nodes(a) >= 3)
-		{
-			node_cost_calc(&a, &b);
-			num_of_nodes(a);
-		}
+		target_position(a, b);
+		printf("%d\n", cost_calc(a, b));
+		// while (num_of_nodes(a) >= 3)
+		// {
+		// 	push_ab(&a, &b);
+		// 	target_position(&a);
+			
+		// 	num_of_nodes(a);
+		// }
 		printf("a[%d]: ", num_of_nodes(a)); print_node(a);
 		printf("b[%d]: ", num_of_nodes(b)); print_node(b);
 
