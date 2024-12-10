@@ -6,38 +6,37 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/09 15:21:43 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/10 11:50:31 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	cheapest_node_index(t_stack *src_node, t_stack *dest_node)
-{
-	t_stack	*current_src;
-	t_stack	*current_dest;
-	int		src_index;
-	int		dest_index;
+// void	node_cost_calc(t_stack **src_node, t_stack **dest_node)
+// {
+// 	int		src_index;
+// 	int		dest_pos;
+// 	t_stack	*current_dest;
 
-	src_index = 0;
-	current_src = src_node;
-	while (current_src)
-	{
-		current_dest = dest_node;
-		dest_index = 0;
-		while (current_src->nbr < current_dest->nbr)
-		{
-			dest_index++;
-			current_dest = current_dest->next_nbr;
-		}
-		current_src->cost = cost_calc()
-		src_index++;
-		current_src = current_src->next_nbr;
-	}
-	return (node_index);
-}
+// 	src_index = 0;
+// 	while (src_node)
+// 	{
+// 		dest_pos = 0;
+// 		current_dest = *dest_node;
+// 		while (current_dest &&  (*src_node)->nbr < current_dest->nbr)
+// 		{
+// 			dest_pos++;
+// 			current_dest = current_dest->next_nbr;
+// 		}
+// 		(*src_node)->index = src_index;
+// 		(*src_node)->cost = src_index++ + dest_pos + 1;
+// 		(*src_node) = (*src_node)->next_nbr;
+// 	}
+// }
 
-int	cost_calc()
-{
+
+
+// int	cost_calc()
+// {
 	
-}
+// }

@@ -5,31 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 14:18:11 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/09 14:19:34 by dchrysov         ###   ########.fr       */
+/*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
+/*   Updated: 2024/12/10 12:42:33 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	stack_min(t_stack *head)
+void	target_value(t_stack *src, t_stack *dst)
 {
-	int	min;
+	t_stack	*current;
+	int		csn;
 
-	min = head->nbr;
-	while (head)
+	while (src)
 	{
-		if (head->nbr < min)
-			min = head->nbr;
-		head = head->next_nbr;
+		current = dst;
+		csn = INT_MIN;
+		while (current)
+		{
+			if (src->nbr > current->nbr && current->nbr > csn)
+				csn = current->nbr;
+			current = current->next_nbr;
+		}
+		if (csn == INT_MIN)
+			src->target_position = max_value_node(dst);
+		else
+			src->target_position = csn;
+		src = src->next_nbr;
 	}
-	return (min);
 }
 
-int	stack_max(t_stack *head)
+int	cost_calc(t_stack *src, t_stack *dest)
 {
-	int	max;
+	int	cost;
+	int	src_cost;
+	int	dest_cost;
+	int	cost_index;
 
+	src_cost = 0;
+	cost = num_of_nodes(src) / 2 + num_of_nodes(dest) / 2;
+	while (src)
+	{
+		if (src->target_position <= num_of_nodes(dest) / 2)
+			dest_cost = src->target_position;
+		else
+			dest_cost = num_of_nodes(dest) - src->target_position;
+		if (src_cost + dest_cost < cost)
+		{
+			cost = src_cost + dest_cost;
+			cost_index = src_cost;
+		}
+		src_cost++;
+		src = src->next_nbr;
+	}
+	return (cost_index);
+}
+
+int	max_value_node(t_stack *head)
+{
+	int max;
+	
 	max = head->nbr;
 	while (head)
 	{
@@ -39,3 +74,26 @@ int	stack_max(t_stack *head)
 	}
 	return (max);
 }
+
+int	max_index_node(t_stack *head)
+{
+	int max;
+	int	i;
+	int	result;
+
+	i = 0;
+	result = i;
+	max = head->nbr;
+	while (head)
+	{
+		if (head->nbr > max)
+		{
+			result = i;
+			max = head->nbr;
+		}
+		i++;
+		head = head->next_nbr;
+	}
+	return (result);
+}
+

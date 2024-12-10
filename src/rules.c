@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/03 12:58:00 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/10 11:45:01 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,9 @@ void	rev_rotate(t_stack **head)
 	write(STDOUT_FILENO, "rra\n", 4);
 }
 
-void	push_ab(t_stack **src_head, t_stack **dst_head)
-{
-	t_stack	*new_head;
-
-	new_head = *src_head;
-	*src_head = (*src_head)->next_nbr;
-	new_head->next_nbr = (*dst_head);
-	*dst_head = new_head;
-	write(STDOUT_FILENO, "pa\n", 3);
-}
-
+/**
+ * @brief Swaps first and second node.
+ */
 void	swap(t_stack **head)
 {
 	t_stack *first;
@@ -71,4 +63,15 @@ void	swap(t_stack **head)
 	second->next_nbr = first;
 	*head = second;
 	write(STDOUT_FILENO, "sa\n", 3);
+}
+
+void	push_ab(t_stack **src_head, t_stack **dst_head)
+{
+	t_stack	*new_head;
+
+	new_head = *src_head;
+	*src_head = (*src_head)->next_nbr;
+	new_head->next_nbr = (*dst_head);
+	*dst_head = new_head;
+	write(STDOUT_FILENO, "pa\n", 3);
 }

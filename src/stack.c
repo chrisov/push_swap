@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/09 14:19:11 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:42:35 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ static t_stack	*new_node(int value)
 	return (node);
 }
 
+/**
+ * @brief Initialization of stack.
+ */
 void	stack_init(t_stack **head, char **array)
 {
 	t_stack	*current;
@@ -68,6 +71,9 @@ void	stack_init(t_stack **head, char **array)
 	}
 }
 
+/**
+ * @brief Counts the number of nodes in a stack
+ */
 int	num_of_nodes(t_stack *head)
 {
 	int	result;
@@ -80,6 +86,7 @@ int	num_of_nodes(t_stack *head)
 	}
 	return (result);
 }
+
 
 void	sort_stack_of_three(t_stack **head)
 {
@@ -121,7 +128,7 @@ void	print_node(t_stack *head)			//<-------- PRINTF
 		node = head;
 		while (node)
 		{
-			printf("%d -> ", node->nbr);
+			printf("%d[->%d] -> ", node->nbr, node->target_position);
 			node = node->next_nbr;
 		}
 		printf("NULL\n");

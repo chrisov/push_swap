@@ -10,8 +10,8 @@ OBJDIR = ./obj
 SRCS = $(SRCDIR)/main.c\
 		$(SRCDIR)/stack.c\
 		$(SRCDIR)/rules.c\
-		$(SRCDIR)/functions.c\
-		$(SRCDIR)/cost_calc.c
+		$(SRCDIR)/cost_calc.c\
+		$(SRCDIR)/functions.c
 
 OBJS = $(SRCS:$(SRCDIR)\%.c=$(OBJDIR)\%.o)
 NAME = push_swap
