@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/10 12:42:52 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:53:28 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		num_of_nodes(t_stack *head);
 int		max_value_node(t_stack *head);
 int		max_index_node(t_stack *head);
 int		min_value_node(t_stack *head);
-void	target_value(t_stack *src, t_stack *dst);
+void	target_position(t_stack *src, t_stack *dst);
 int		cost_calc(t_stack *src, t_stack *dest);
 
 #endif

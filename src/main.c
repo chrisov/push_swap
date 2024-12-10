@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/10 12:43:27 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:16:13 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	main(int argc, char **argv)
 		push_ab(&a, &b);
 		push_ab(&a, &b);
 		push_ab(&a, &b);
+		push_ab(&a, &b);
 
-		target_value(a, b);
+		target_position(a, b);
 		printf("%d\n", cost_calc(a, b));
 		// while (num_of_nodes(a) >= 3)
 		// {
