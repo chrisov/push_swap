@@ -31,7 +31,9 @@ int	main(int argc, char **argv)
 			printf("             _____________________________________________________\n\n");
 			push_cheapest(&a, &b);
 		}
-		// sort_stack_of_three(&a);
+		print_nodes(a, b);
+		printf("             _____________________________________________________\n\n");
+		sort_stack_of_three(&a);
 		print_nodes(a, b);
 	}
 }

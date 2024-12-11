@@ -15,18 +15,13 @@
 void	push_cheapest(t_stack **src, t_stack **dest)
 {
 	t_stack	*cheapest;
-	int		i_src;
-	int		i_dest;
 
-	i_src = 0;
 	cheapest = *src;
 	while (cheapest->cheapest == false)
 		cheapest = cheapest->next_node;
-	i_src = cheapest->index;
-	i_dest = cheapest->target_node->index;
-	while (i_src > 0 || i_dest > 0)
+	while ((*src)->nbr != cheapest->nbr || (*dest)->nbr != cheapest->target_node->nbr)
 	{
-		if (i_src == i_dest)
+		if (cheapest->index == cheapest->target_node->index)
 		{
 			if (cheapest->above_median)
 				rr_rrr(src, dest, rotate, "rr");
@@ -35,7 +30,7 @@ void	push_cheapest(t_stack **src, t_stack **dest)
 		}
 		else
 		{
-			if (i_src > i_dest)
+			if (cheapest->index > cheapest->target_node->index)
 			{
 				if (cheapest->above_median)
 					rotate(src, "ra");
@@ -50,8 +45,6 @@ void	push_cheapest(t_stack **src, t_stack **dest)
 					rev_rotate(dest, "rrb");
 			}
 		}
-		i_src--;
-		i_dest--;
 	}
 	push_ab(src, dest, "pab");
 }
