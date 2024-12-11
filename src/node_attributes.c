@@ -82,6 +82,7 @@ void	is_cheapest(t_stack *head)
 	int		cheapest_index;
 
 	min_cost = head->cost;
+	cheapest_index = head->index;
 	current = head;
 	while (current)
 	{
