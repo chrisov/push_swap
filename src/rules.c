@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/10 11:45:01 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:27:51 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	rotate(t_stack **head)
 	first->next_node = NULL;
 	node_index(*head);
 	position_to_median(*head);
-	write(STDOUT_FILENO, "ra\n", 3);
 }
 
 /**
@@ -50,7 +49,15 @@ void	rev_rotate(t_stack **head)
 	*head = current;
 	node_index(*head);
 	position_to_median(*head);
-	write(STDOUT_FILENO, "rra\n", 4);
+}
+
+/**
+ * @brief (Reverse) rotate both stacks at the same time.
+ */
+void	rr_rrr(t_stack **stack1, t_stack **stack2, void (*f)(t_stack **))
+{
+	f(stack1);
+	f(stack2);
 }
 
 /**
@@ -68,7 +75,6 @@ void	swap(t_stack **head)
 	*head = second;
 	node_index(*head);
 	position_to_median(*head);
-	write(STDOUT_FILENO, "sa\n", 3);
 }
 
 void	push_ab(t_stack **src_head, t_stack **dst_head)
@@ -83,5 +89,5 @@ void	push_ab(t_stack **src_head, t_stack **dst_head)
 	node_index(*dst_head);
 	position_to_median(*src_head);
 	position_to_median(*dst_head);
-	write(STDOUT_FILENO, "pa\n", 3);
+	target_node(*src_head, *dst_head);
 }
