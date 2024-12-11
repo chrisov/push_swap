@@ -26,9 +26,12 @@ int	main(int argc, char **argv)
 		rotate(&a);
 		push_ab(&a, &b);
 		push_ab(&a, &b);
-		// push_ab(&a, &b);
+		push_ab(&a, &b);
+		swap(&a);
 		// rev_rotate(&a);
 		target_node(a, b);
+		calculate_cost(a, b);
+		is_cheapest(a);
 		print_nodes(a, b);
 		// print_nodes(a, b);
 

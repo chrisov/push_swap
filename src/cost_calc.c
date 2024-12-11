@@ -12,72 +12,37 @@
 
 #include "../include/push_swap.h"
 
-// static int	max(int n1, int n2)
-// {
-// 	if (n1 < n2)
-// 		return (n2);
-// 	return (n1);
-// }
+static int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
 
-// int	cost_calc(t_stack *src, t_stack *dest)
-// {
-// 	t_stack *current_src;
-// 	int	src_pos;
-// 	int	cost;
-// 	int	cost_index;
+void	calculate_cost(t_stack *src, t_stack *dest)
+{
+	t_stack	*current;
+	int	cost;
 
-// 	src_pos = 0;
-// 	cost = INT_MAX;
-// 	cost_index = 0;
-// 	current_src = src;
-// 	while (current_src)
-// 	{
-// 		if (src_pos <= num_of_nodes(src) / 2)
-// 		{
-// 			if (current_src->target_position <= num_of_nodes(dest) / 2)
-// 			{
-// 				printf("%d\n", max(src_pos, current_src->target_position));
-// 				if (max(src_pos, current_src->target_position) < cost)
-// 				{
-// 					cost = max(src_pos, current_src->target_position);
-// 					cost_index = src_pos;
-// 				}
-// 			}
-// 			else
-// 			{
-// 				printf("%d\n", src_pos + num_of_nodes(dest) - current_src->target_position);
-// 				if (src_pos + num_of_nodes(dest) - current_src->target_position < cost)
-// 				{
-// 					cost = src_pos + num_of_nodes(dest) - current_src->target_position;
-// 					cost_index = src_pos;
-// 				}
-// 			}
-// 		}
-// 		else
-// 		{
-// 			if (current_src->target_position > num_of_nodes(dest) / 2)
-// 			{
-// 				printf("%d\n", max(num_of_nodes(src) - src_pos, num_of_nodes(dest) - current_src->target_position));
-// 				if (max(num_of_nodes(src) - src_pos, num_of_nodes(dest) - current_src->target_position) < cost)
-// 				{
-// 					cost = max(num_of_nodes(src) - src_pos, num_of_nodes(dest) - current_src->target_position);
-// 					cost_index = src_pos;
-// 				}
-// 			}
-// 			else
-// 			{
-// 				printf("%d\n", num_of_nodes(src) - src_pos + current_src->target_position);
-// 				if (num_of_nodes(src) - src_pos + current_src->target_position < cost)
-// 				{
-// 					cost = num_of_nodes(src) - src_pos + current_src->target_position;
-// 					cost_index = src_pos;
-// 				}
-// 			}
-// 		}
-// 		src_pos++;
-// 		current_src = current_src->next_node;
-// 	}
-// 	return (cost_index);
-// }
-
-
+	current = src;
+	while (current)
+	{
+		cost = 0;
+		if (current->above_median)
+		{
+			if (current->target_node->above_median)
+				cost = max(current->index, current->target_node->index);
+			else
+				cost = current->index + num_of_nodes(dest) - current->target_node->index;
+		}
+		else
+		{
+			if (current->target_node->above_median)
+				cost = num_of_nodes(src) - current->index + current->target_node->index;
+			else
+				cost = max(num_of_nodes(src) - current->index, num_of_nodes(dest) - current->target_node->index);
+		}
+		current->cost = cost;
+		current = current->next_node;
+	}
+}

@@ -23,6 +23,7 @@ typedef struct	s_stack
 {
 	int				nbr;
 	int				index;
+	int				cost;
 	bool			above_median;
 	bool			cheapest;
 	struct s_stack	*target_node;
@@ -44,10 +45,12 @@ t_stack	*find_min_node(t_stack *head);
 int		max_index_node(t_stack *head);
 int		min_value_node(t_stack *head);
 int		cost_calc(t_stack *src, t_stack *dest);
-void	set_node_attributes(t_stack *src, t_stack *dest);
+// void	set_node_attributes(t_stack *src, t_stack *dest);
 void	node_index(t_stack *head);
 void	print_node(t_stack *head);
 void	target_node(t_stack *src, t_stack *dst);
 void	position_to_median(t_stack *head);
+void	calculate_cost(t_stack *src, t_stack *dest);
+void	is_cheapest(t_stack *head);
 
 #endif

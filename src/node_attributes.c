@@ -54,24 +54,52 @@ void	target_node(t_stack *src, t_stack *dst)
 
 void	position_to_median(t_stack *head)
 {
-	t_stack	*current;
 	int		len;
 
 	len = num_of_nodes(head);
-	current = head;
-	while (current)
+	if (len == 2)
 	{
-		if (current->index <= len / 2)
-			current->above_median = true;
-		else
-			current->above_median = false;
-		current = current->next_node;
+		head->above_median = true;
+		head->next_node->above_median = false;
+	}
+	else
+	{
+		while (head)
+		{
+			if (head->index <= len / 2)
+				head->above_median = true;
+			else
+				head->above_median = false;
+			head = head->next_node;
+		}
 	}
 }
 
-void	set_node_attributes(t_stack *src, t_stack *dest)
+void	is_cheapest(t_stack *head)
 {
-	node_index(src);
-	target_node(src, dest);
-	position_to_median(src);
+	t_stack	*current;
+	int		min_cost;
+	int		cheapest_index;
+
+	min_cost = head->cost;
+	current = head;
+	while (current)
+	{
+		if (current->cost < min_cost)
+		{
+			min_cost = current->cost;
+			cheapest_index = current->index;
+		}
+		current = current->next_node;
+	}
+	while (cheapest_index-- >0)
+		head = head->next_node;
+	head->cheapest = true;
 }
+
+// void	set_node_attributes(t_stack *src, t_stack *dest)
+// {
+// 	node_index(src);
+// 	target_node(src, dest);
+// 	position_to_median(src);
+// }
