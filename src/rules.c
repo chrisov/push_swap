@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/11 12:27:51 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:38:03 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,5 @@ void	push_ab(t_stack **src_head, t_stack **dst_head)
 	position_to_median(*src_head);
 	position_to_median(*dst_head);
 	target_node(*src_head, *dst_head);
+	// calculate_cost(*src_head, *dst_head);
 }

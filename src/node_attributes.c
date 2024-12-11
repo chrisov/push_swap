@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   node_attributes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/10 12:42:35 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:11:48 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	node_index(t_stack *head)
 {
 	int	index;
-	
+
 	index = 0;
 	while (head)
 	{
@@ -95,6 +95,41 @@ void	is_cheapest(t_stack *head)
 	while (cheapest_index-- >0)
 		head = head->next_node;
 	head->cheapest = true;
+}
+
+static int	max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+void	calculate_cost(t_stack *src, t_stack *dest)
+{
+	t_stack	*current;
+	int		cost;
+
+	current = src;
+	while (current)
+	{
+		cost = 0;
+		if (current->above_median)
+		{
+			if (current->target_node->above_median)
+				cost = max(current->index, current->target_node->index);
+			else
+				cost = current->index + num_of_nodes(dest) - current->target_node->index;
+		}
+		else
+		{
+			if (current->target_node->above_median)
+				cost = num_of_nodes(src) - current->index + current->target_node->index;
+			else
+				cost = max(num_of_nodes(src) - current->index, num_of_nodes(dest) - current->target_node->index);
+		}
+		current->cost = cost;
+		current = current->next_node;
+	}
 }
 
 // void	set_node_attributes(t_stack *src, t_stack *dest)

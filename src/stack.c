@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/10 12:42:35 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:28:21 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,9 @@ void	sort_stack_of_three(t_stack **head)
 
 void	print_nodes(t_stack *src, t_stack *dest)			//<-------- PRINTF
 {
-	if (dest)
+	while (src || dest)
 	{
-		while (src)
+		if (src)
 		{
 			printf("(%d): %d[%d]\t->[%d] ",src->cost, src->nbr, src->index, src->target_node->index);
 			if (src->above_median)
@@ -139,33 +139,22 @@ void	print_nodes(t_stack *src, t_stack *dest)			//<-------- PRINTF
 				printf(" (cheapest)\t\t");
 			else
 				printf("\t\t\t");
-			if (dest)
-			{
-				printf("%d[%d]\t", dest->nbr, dest->index);
-				if (dest->above_median == true)
-					printf("(above median)");
-				else
-					printf("(below median)");
-				dest = dest->next_node;
-			}
-			else
-				printf(" ");
-			printf("\n");
 			src = src->next_node;
 		}
-	}
-	else
-	{
-		while (src)
+		else
+			printf("\t\t\t\t\t\t\t");
+		if (dest)
 		{
-			printf("(%d): %d[%d]\t", src->cost, src->nbr, src->index);
-			if (src->above_median == true)
+			printf("%d[%d]\t", dest->nbr, dest->index);
+			if (dest->above_median == true)
 				printf("(above median)");
 			else
 				printf("(below median)");
-			printf("\n");
-			src = src->next_node;
+			dest = dest->next_node;
 		}
+		else
+			printf(" ");
+		printf("\n");
 	}
 }
 
@@ -173,7 +162,8 @@ void	print_node(t_stack *head)
 {
 	while (head)
 	{
-		printf("%d[%d] -> [%d]\n", head->nbr, head->index, head->target_node->nbr);
+		printf("%d[%d] -> ", head->nbr, head->index);
 		head = head->next_node;
 	}
+	printf("NULL\n");
 }

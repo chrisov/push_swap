@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/10 14:53:20 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:56:41 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,3 @@ t_stack	*find_min_node(t_stack *head)
 	}
 	return (min);
 }
-
-int	max_index_node(t_stack *head)
-{
-	int max;
-	int	i;
-	int	result;
-
-	i = 0;
-	result = i;
-	max = head->nbr;
-	while (head)
-	{
-		if (head->nbr > max)
-		{
-			result = i;
-			max = head->nbr;
-		}
-		i++;
-		head = head->next_node;
-	}
-	return (result);
-}
-

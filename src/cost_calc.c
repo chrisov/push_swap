@@ -6,43 +6,52 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/10 16:03:12 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:13:53 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static int	max(int a, int b)
+void	push_cheapest(t_stack **src, t_stack **dest)
 {
-	if (a > b)
-		return (a);
-	return (b);
-}
+	t_stack	*cheapest;
+	int		i_src;
+	int		i_dest;
 
-void	calculate_cost(t_stack *src, t_stack *dest)
-{
-	t_stack	*current;
-	int	cost;
-
-	current = src;
-	while (current)
+	i_src = 0;
+	cheapest = *src;
+	while (cheapest->cheapest == false)
+		cheapest = cheapest->next_node;
+	i_src = cheapest->index;
+	i_dest = cheapest->target_node->index;
+	while (i_src > 0 || i_dest > 0)
 	{
-		cost = 0;
-		if (current->above_median)
+		if (i_src == i_dest)
 		{
-			if (current->target_node->above_median)
-				cost = max(current->index, current->target_node->index);
+			if (cheapest->above_median)
+				rr_rrr(src, dest, rotate);
 			else
-				cost = current->index + num_of_nodes(dest) - current->target_node->index;
+				rr_rrr(src, dest, rev_rotate);
 		}
 		else
 		{
-			if (current->target_node->above_median)
-				cost = num_of_nodes(src) - current->index + current->target_node->index;
+			if (i_src > i_dest)
+			{
+				if (cheapest->above_median)
+					rotate(src);
+				else
+					rev_rotate(src);
+			}
 			else
-				cost = max(num_of_nodes(src) - current->index, num_of_nodes(dest) - current->target_node->index);
+			{
+				if (cheapest->above_median)
+					rotate(dest);
+				else
+					rev_rotate(dest);
+			}
 		}
-		current->cost = cost;
-		current = current->next_node;
+		i_src--;
+		i_dest--;
 	}
+	push_ab(src, dest);
 }

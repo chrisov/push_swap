@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/10 15:16:13 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:28:55 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,18 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		stack_init(&a, argv);
-		// printf_node(a);
 		b = NULL;
-		rotate(&a);
-		rotate(&a);
 		push_ab(&a, &b);
 		push_ab(&a, &b);
-		push_ab(&a, &b);
-		swap(&a);
-		// rev_rotate(&a);
-		target_node(a, b);
-		calculate_cost(a, b);
-		is_cheapest(a);
-		print_nodes(a, b);
-		// print_nodes(a, b);
-
-		// // while (num_of_nodes(a) >= 3)
-		// // {
-		// // 	push_ab(&a, &b);
-		// // 	target_position(&a);
-			
-		// // 	num_of_nodes(a);
-		// // }
+		while (num_of_nodes(a) >= 3)
+		{
+			calculate_cost(a, b);
+			is_cheapest(a);
+			print_nodes(a, b);
+			printf("             _____________________________________________________\n\n");
+			push_cheapest(&a, &b);
+			num_of_nodes(a);
+		}
+		// sort_stack_of_three(&a);
 	}
 }
