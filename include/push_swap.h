@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/11 13:04:17 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:05:13 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ typedef struct s_stack
 	struct s_stack	*next_node;
 }				t_stack;
 
-void	rr_rrr(t_stack **stack1, t_stack **stack2, void (*f)(t_stack **));
-void	rotate(t_stack **head);
-void	rev_rotate(t_stack **head);
-void	swap(t_stack **head);
-void	push_ab(t_stack **src_head, t_stack **dst_head);
+void	rr_rrr(t_stack **s1, t_stack **s2, void (*f)(t_stack **, char *),
+			char *msg);
+void	rotate(t_stack **head, char *msg);
+void	rev_rotate(t_stack **head, char *msg);
+void	swap(t_stack **head, char *msg);
+void	push_ab(t_stack **src_head, t_stack **dst_head, char *msg);
 // 
 t_stack	*find_max_node(t_stack *head);
 t_stack	*find_min_node(t_stack *head);
@@ -48,7 +49,7 @@ void	calculate_cost(t_stack *src, t_stack *dest);
 void	is_cheapest(t_stack *head);
 void	target_node(t_stack *src, t_stack *dst);
 void	print_node(t_stack *head);
-void	print_nodes(t_stack *head, t_stack *dest);			//<-------- PRINTF
+void	print_nodes(t_stack *head, t_stack *dest);
 void	stack_init(t_stack **stack, char **array);
 void	push_cheapest(t_stack **src, t_stack**dest);
 

@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/11 15:40:04 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:57:06 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,22 +106,22 @@ void	sort_stack_of_three(t_stack **head)
 	third = (*head)->next_node->next_node->nbr;
 	if (second > first && second > third)
 	{
-		rev_rotate(head);
+		rev_rotate(head, "rra");
 		if (first < third)
-			swap(head);
+			swap(head, "sa");
 	}
 	if (first > second && first > third)
 	{
 		if (second > third)
 		{
-			swap(head);
-			rev_rotate(head);
+			swap(head, "sa");
+			rev_rotate(head, "rra");
 		}
 		else
-			rotate(head);
+			rotate(head, "ra");
 	}
 	if (third > second && third > first && first > second)
-		swap(head);
+		swap(head, "sa");
 }
 
 void	print_nodes(t_stack *src, t_stack *dest)			//<-------- PRINTF

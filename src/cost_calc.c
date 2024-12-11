@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/11 15:13:53 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:06:22 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,29 @@ void	push_cheapest(t_stack **src, t_stack **dest)
 		if (i_src == i_dest)
 		{
 			if (cheapest->above_median)
-				rr_rrr(src, dest, rotate);
+				rr_rrr(src, dest, rotate, "rr");
 			else
-				rr_rrr(src, dest, rev_rotate);
+				rr_rrr(src, dest, rev_rotate, "rrr");
 		}
 		else
 		{
 			if (i_src > i_dest)
 			{
 				if (cheapest->above_median)
-					rotate(src);
+					rotate(src, "ra");
 				else
-					rev_rotate(src);
+					rev_rotate(src, "rra");
 			}
 			else
 			{
-				if (cheapest->above_median)
-					rotate(dest);
+				if (cheapest->target_node->above_median)
+					rotate(dest, "rb");
 				else
-					rev_rotate(dest);
+					rev_rotate(dest, "rrb");
 			}
 		}
 		i_src--;
 		i_dest--;
 	}
-	push_ab(src, dest);
+	push_ab(src, dest, "pab");
 }

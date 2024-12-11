@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/11 14:38:03 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:05:44 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 /**
  * @brief Makes first node the last.
  */
-void	rotate(t_stack **head)
+void	rotate(t_stack **head, char *msg)
 {
 	t_stack	*first;
 	t_stack	*current;
@@ -28,12 +28,14 @@ void	rotate(t_stack **head)
 	first->next_node = NULL;
 	node_index(*head);
 	position_to_median(*head);
+	if (msg)
+		printf("%s\n", msg);
 }
 
 /**
  * @brief Makes last node the first.
  */
-void	rev_rotate(t_stack **head)
+void	rev_rotate(t_stack **head, char *msg)
 {
 	t_stack	*previous;
 	t_stack	*current;
@@ -49,21 +51,24 @@ void	rev_rotate(t_stack **head)
 	*head = current;
 	node_index(*head);
 	position_to_median(*head);
+	if (msg)
+		printf("%s\n", msg);
 }
 
 /**
  * @brief (Reverse) rotate both stacks at the same time.
  */
-void	rr_rrr(t_stack **stack1, t_stack **stack2, void (*f)(t_stack **))
+void	rr_rrr(t_stack **s1, t_stack **s2, void (*f)(t_stack **, char *), char *msg)
 {
-	f(stack1);
-	f(stack2);
+	f(s1, NULL);
+	f(s2, NULL);
+	printf("%s\n", msg);
 }
 
 /**
  * @brief Swaps first and second node.
  */
-void	swap(t_stack **head)
+void	swap(t_stack **head, char *msg)
 {
 	t_stack *first;
 	t_stack	*second;
@@ -75,9 +80,10 @@ void	swap(t_stack **head)
 	*head = second;
 	node_index(*head);
 	position_to_median(*head);
+	printf("%s\n", msg);
 }
 
-void	push_ab(t_stack **src_head, t_stack **dst_head)
+void	push_ab(t_stack **src_head, t_stack **dst_head, char *msg)
 {
 	t_stack	*new_head;
 
@@ -90,5 +96,6 @@ void	push_ab(t_stack **src_head, t_stack **dst_head)
 	position_to_median(*src_head);
 	position_to_median(*dst_head);
 	target_node(*src_head, *dst_head);
+	printf("%s\n", msg);
 	// calculate_cost(*src_head, *dst_head);
 }
