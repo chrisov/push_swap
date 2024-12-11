@@ -11,7 +11,8 @@ SRCS = $(SRCDIR)/main.c\
 		$(SRCDIR)/stack.c\
 		$(SRCDIR)/rules.c\
 		$(SRCDIR)/cost_calc.c\
-		$(SRCDIR)/functions.c
+		$(SRCDIR)/functions.c\
+		$(SRCDIR)/node_attributes.c
 
 OBJS = $(SRCS:$(SRCDIR)\%.c=$(OBJDIR)\%.o)
 NAME = push_swap

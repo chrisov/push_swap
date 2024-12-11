@@ -1,0 +1,77 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
+/*   Updated: 2024/12/10 12:42:35 by dchrysov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/push_swap.h"
+
+void	node_index(t_stack *head)
+{
+	int	index;
+	
+	index = 0;
+	while (head)
+	{
+		head->index = index++;
+		head = head->next_node;
+	}
+}
+
+void	target_node(t_stack *src, t_stack *dst)
+{
+	t_stack	*current;
+	int		target;
+
+	if (dst)
+	{
+		while (src)
+		{
+			src->target_node = find_max_node(dst);
+			current = dst;
+			target = INT_MIN;
+			while (current)
+			{
+				if (src->nbr > current->nbr && current->nbr > target)
+				{
+					target = current->nbr;
+					src->target_node = current;
+				}
+				current = current->next_node;
+			}
+			if (target == INT_MIN)
+				src->target_node = find_max_node(dst);
+			src = src->next_node;
+		}
+	}
+}
+
+void	position_to_median(t_stack *head)
+{
+	t_stack	*current;
+	int		len;
+
+	len = num_of_nodes(head);
+	current = head;
+	while (current)
+	{
+		if (current->index <= len / 2)
+			current->above_median = true;
+		else
+			current->above_median = false;
+		current = current->next_node;
+	}
+}
+
+void	set_node_attributes(t_stack *src, t_stack *dest)
+{
+	node_index(src);
+	target_node(src, dest);
+	position_to_median(src);
+}

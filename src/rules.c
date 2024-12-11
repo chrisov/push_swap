@@ -20,12 +20,14 @@ void	rotate(t_stack **head)
 	t_stack	*current;
 
 	first = *head;
-	*head = (*head)->next_nbr;
+	*head = (*head)->next_node;
 	current = *head;
-	while (current->next_nbr)
-		current = current->next_nbr;
-	current->next_nbr = first;
-	first->next_nbr = NULL;
+	while (current->next_node)
+		current = current->next_node;
+	current->next_node = first;
+	first->next_node = NULL;
+	node_index(*head);
+	position_to_median(*head);
 	write(STDOUT_FILENO, "ra\n", 3);
 }
 
@@ -38,14 +40,16 @@ void	rev_rotate(t_stack **head)
 	t_stack	*current;
 
 	current = *head;
-	while (current->next_nbr)
+	while (current->next_node)
 	{
 		previous = current;
-		current = current->next_nbr;
+		current = current->next_node;
 	}
-	previous->next_nbr = NULL;
-	current->next_nbr = *head;
+	previous->next_node = NULL;
+	current->next_node = *head;
 	*head = current;
+	node_index(*head);
+	position_to_median(*head);
 	write(STDOUT_FILENO, "rra\n", 4);
 }
 
@@ -58,10 +62,12 @@ void	swap(t_stack **head)
 	t_stack	*second;
 
 	first = (*head);
-	second = (*head)->next_nbr;
-	first->next_nbr = second->next_nbr;
-	second->next_nbr = first;
+	second = (*head)->next_node;
+	first->next_node = second->next_node;
+	second->next_node = first;
 	*head = second;
+	node_index(*head);
+	position_to_median(*head);
 	write(STDOUT_FILENO, "sa\n", 3);
 }
 
@@ -70,8 +76,12 @@ void	push_ab(t_stack **src_head, t_stack **dst_head)
 	t_stack	*new_head;
 
 	new_head = *src_head;
-	*src_head = (*src_head)->next_nbr;
-	new_head->next_nbr = (*dst_head);
+	*src_head = (*src_head)->next_node;
+	new_head->next_node = (*dst_head);
 	*dst_head = new_head;
+	node_index(*src_head);
+	node_index(*dst_head);
+	position_to_median(*src_head);
+	position_to_median(*dst_head);
 	write(STDOUT_FILENO, "pa\n", 3);
 }

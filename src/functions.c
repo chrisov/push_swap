@@ -12,45 +12,32 @@
 
 #include "../include/push_swap.h"
 
-void	target_position(t_stack *src, t_stack *dst)
+t_stack	*find_max_node(t_stack *head)
 {
-	t_stack	*current;
-	int		csn;
-	int		csn_index;
-
-	while (src)
-	{
-		current = dst;
-		csn = INT_MIN;
-		csn_index = 0;
-		while (current)
-		{
-			if (src->nbr > current->nbr && current->nbr > csn)
-			{
-				csn = current->nbr;
-				src->target_position = csn_index;
-			}
-			csn_index++;
-			current = current->next_nbr;
-		}
-		if (csn == INT_MIN)
-			src->target_position = max_index_node(dst);
-		src = src->next_nbr;
-	}
-}
-
-int	max_value_node(t_stack *head)
-{
-	int max;
+	t_stack *max;
 	
-	max = head->nbr;
+	max = head;
 	while (head)
 	{
-		if (head->nbr > max)
-			max = head->nbr;
-		head = head->next_nbr;
+		if (head->nbr > max->nbr)
+			max = head;
+		head = head->next_node;
 	}
 	return (max);
+}
+
+t_stack	*find_min_node(t_stack *head)
+{
+	t_stack *min;
+	
+	min = head;
+	while (head)
+	{
+		if (head->nbr < min->nbr)
+			min = head;
+		head = head->next_node;
+	}
+	return (min);
 }
 
 int	max_index_node(t_stack *head)
@@ -70,7 +57,7 @@ int	max_index_node(t_stack *head)
 			max = head->nbr;
 		}
 		i++;
-		head = head->next_nbr;
+		head = head->next_node;
 	}
 	return (result);
 }

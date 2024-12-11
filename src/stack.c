@@ -48,7 +48,8 @@ static t_stack	*new_node(int value)
 	if (!node)
 		return (NULL);
 	node->nbr = value;
-	node->next_nbr = NULL;
+	node->next_node = NULL;
+	node->previous_node = NULL;
 	return (node);
 }
 
@@ -58,15 +59,20 @@ static t_stack	*new_node(int value)
 void	stack_init(t_stack **head, char **array)
 {
 	t_stack	*current;
+	t_stack *temp;
 
 	array++;
 	(*head) = new_node(ft_atoi(*array));
+	(*head)->index = 0;
 	current = (*head);
 	array++;
 	while (*array)
 	{
-		current->next_nbr = new_node(ft_atoi(*array));
-		current = current->next_nbr;
+		temp = current;
+		current->next_node = new_node(ft_atoi(*array));
+		current = current->next_node;
+		current->previous_node = temp;
+		current->index = current->previous_node->index + 1;
 		array++;
 	}
 }
@@ -82,7 +88,7 @@ int	num_of_nodes(t_stack *head)
 	while (head)
 	{
 		result++;
-		head = head->next_nbr;
+		head = head->next_node;
 	}
 	return (result);
 }
@@ -95,8 +101,8 @@ void	sort_stack_of_three(t_stack **head)
 	int	third;
 
 	first = (*head)->nbr;
-	second = (*head)->next_nbr->nbr;
-	third = (*head)->next_nbr->next_nbr->nbr;
+	second = (*head)->next_node->nbr;
+	third = (*head)->next_node->next_node->nbr;
 	if (second > first && second > third)
 	{
 		rev_rotate(head);
@@ -117,20 +123,51 @@ void	sort_stack_of_three(t_stack **head)
 		swap(head);
 }
 
-void	print_node(t_stack *head)			//<-------- PRINTF
+void	print_nodes(t_stack *src, t_stack *dest)			//<-------- PRINTF
 {
 	t_stack	*node;
 
-	if (!head)
-		printf("NULL");
-	else
+	node = src;
+	if (dest)
 	{
-		node = head;
 		while (node)
 		{
-			printf("%d[->%d] -> ", node->nbr, node->target_position);
-			node = node->next_nbr;
+			printf("%d[%d]\t->[%d] ", node->nbr, node->index, node->target_node->index);
+			if (node->above_median == true)
+				printf("(above median)");
+			else
+				printf("(below median)");
+			if (dest)
+			{
+				printf("\t\t%d[%d]", dest->nbr, dest->index);
+				dest = dest->next_node;			
+			}
+			else
+				printf(" ");
+			printf("\n");
+			node = node->next_node;
 		}
-		printf("NULL\n");
+	}
+	else
+	{
+		while (node)
+		{
+			printf("%d[%d]\t", node->nbr, node->index);
+			if (node->above_median == true)
+				printf("(above median)");
+			else
+				printf("(below median)");
+			printf("\n");
+			node = node->next_node;
+		}
+	}
+}
+
+void	print_node(t_stack *head)
+{
+	while (head)
+	{
+		printf("%d[%d] -> [%d]\n", head->nbr, head->index, head->target_node->nbr);
+		head = head->next_node;
 	}
 }
