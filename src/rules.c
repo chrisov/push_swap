@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
 /**
  * @brief Makes first node the last.
  */
@@ -83,7 +84,13 @@ void	swap(t_stack **head, char *msg)
 	printf("%s\n", msg);
 }
 
-void	push_ab(t_stack **src_head, t_stack **dst_head, char *msg)
+/**
+ * @brief Rule for pushing head node from src stack to dest stack.
+ * 
+ * @note When rev_flag = false, target_node is the closest smaller number (->b).
+ * @note When rev_flag = true, target_node is the closest bigger number (a<-).
+ */
+void	push(t_stack **src_head, t_stack **dst_head, bool rev_flag, char *msg)
 {
 	t_stack	*new_head;
 
@@ -95,7 +102,7 @@ void	push_ab(t_stack **src_head, t_stack **dst_head, char *msg)
 	node_index(*dst_head);
 	position_to_median(*src_head);
 	position_to_median(*dst_head);
-	target_node(*src_head, *dst_head);
+	if (!rev_flag)
+		target_node(*src_head, *dst_head);
 	printf("%s\n", msg);
-	// calculate_cost(*src_head, *dst_head);
 }

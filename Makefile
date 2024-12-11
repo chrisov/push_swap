@@ -10,7 +10,7 @@ OBJDIR = ./obj
 SRCS = $(SRCDIR)/main.c\
 		$(SRCDIR)/stack.c\
 		$(SRCDIR)/rules.c\
-		$(SRCDIR)/cost_calc.c\
+		$(SRCDIR)/push_cheapest.c\
 		$(SRCDIR)/functions.c\
 		$(SRCDIR)/node_attributes.c
 

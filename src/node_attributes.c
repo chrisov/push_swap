@@ -132,10 +132,3 @@ void	calculate_cost(t_stack *src, t_stack *dest)
 		current = current->next_node;
 	}
 }
-
-// void	set_node_attributes(t_stack *src, t_stack *dest)
-// {
-// 	node_index(src);
-// 	target_node(src, dest);
-// 	position_to_median(src);
-// }

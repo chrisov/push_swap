@@ -21,12 +21,10 @@ int	main(int argc, char **argv)
 	{
 		stack_init(&a, argv);
 		b = NULL;
-		push_ab(&a, &b, "pab");
-		push_ab(&a, &b, "pab");
+		push(&a, &b, false, "pab");
+		push(&a, &b, false, "pab");
 		while (num_of_nodes(a) > 3)
 		{
-			calculate_cost(a, b);
-			is_cheapest(a);
 			print_nodes(a, b);
 			printf("             _____________________________________________________\n\n");
 			push_cheapest(&a, &b);

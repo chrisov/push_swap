@@ -94,7 +94,6 @@ int	num_of_nodes(t_stack *head)
 	return (result);
 }
 
-
 void	sort_stack_of_three(t_stack **head)
 {
 	int	first;
@@ -126,6 +125,8 @@ void	sort_stack_of_three(t_stack **head)
 
 void	print_nodes(t_stack *src, t_stack *dest)			//<-------- PRINTF
 {
+	calculate_cost(src, dest);
+	is_cheapest(src);
 	while (src || dest)
 	{
 		if (src)
