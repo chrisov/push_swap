@@ -6,39 +6,11 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/11 15:57:06 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:44:24 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-static int	ft_atoi(const char *str)
-{
-	int	res;
-	int	count;
-	int	sign;
-
-	res = 0;
-	count = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	while (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign *= -1;
-		if (count > 0)
-			return (0);
-		str++;
-		count++;
-	}
-	while (*str && *str >= '0' && *str <= '9')
-	{
-		res = res * 10 + (*str - '0');
-		str++;
-	}
-	return (sign * res);
-}
 
 static t_stack	*new_node(int value)
 {
@@ -62,7 +34,7 @@ void	stack_init(t_stack **head, char **array)
 	t_stack	*current;
 	t_stack *temp;
 
-	array++;
+
 	(*head) = new_node(ft_atoi(*array));
 	(*head)->index = 0;
 	current = (*head);
@@ -105,22 +77,22 @@ void	sort_stack_of_three(t_stack **head)
 	third = (*head)->next_node->next_node->nbr;
 	if (second > first && second > third)
 	{
-		rev_rotate(head, "rra");
+		rev_rotate(head, "rra\n");
 		if (first < third)
-			swap(head, "sa");
+			swap(head, "sa\n");
 	}
 	if (first > second && first > third)
 	{
 		if (second > third)
 		{
-			swap(head, "sa");
-			rev_rotate(head, "rra");
+			swap(head, "sa\n");
+			rev_rotate(head, "rra\n");
 		}
 		else
-			rotate(head, "ra");
+			rotate(head, "ra\n");
 	}
 	if (third > second && third > first && first > second)
-		swap(head, "sa");
+		swap(head, "sa\n");
 }
 
 void	print_nodes(t_stack *src, t_stack *dest)

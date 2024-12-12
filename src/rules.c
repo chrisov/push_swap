@@ -6,14 +6,14 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/11 16:05:44 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:23:24 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
 /**
- * @brief Makes first node the last.
+ * @brief Makes first node last.
  */
 void	rotate(t_stack **head, char *msg)
 {
@@ -30,11 +30,11 @@ void	rotate(t_stack **head, char *msg)
 	node_index(*head);
 	position_to_median(*head);
 	if (msg)
-		printf("%s\n", msg);
+		ft_putstr_fd(msg, 1);
 }
 
 /**
- * @brief Makes last node the first.
+ * @brief Makes last node first.
  */
 void	rev_rotate(t_stack **head, char *msg)
 {
@@ -53,17 +53,17 @@ void	rev_rotate(t_stack **head, char *msg)
 	node_index(*head);
 	position_to_median(*head);
 	if (msg)
-		printf("%s\n", msg);
+		ft_putstr_fd(msg, 1);
 }
 
 /**
- * @brief (Reverse) rotate both stacks at the same time.
+ * @brief Rotate both stacks at the same time.
  */
 void	rr_rrr(t_stack **s1, t_stack **s2, void (*f)(t_stack **, char *), char *msg)
 {
 	f(s1, NULL);
 	f(s2, NULL);
-	printf("%s\n", msg);
+	ft_putstr_fd(msg, 1);
 }
 
 /**
@@ -81,7 +81,7 @@ void	swap(t_stack **head, char *msg)
 	*head = second;
 	node_index(*head);
 	position_to_median(*head);
-	printf("%s\n", msg);
+	ft_putstr_fd(msg, 1);
 }
 
 /**
@@ -106,5 +106,5 @@ void	push(t_stack **src_head, t_stack **dst_head, bool rev_flag, char *msg)
 		target_csn_node(*src_head, *dst_head);
 	else
 		target_cbn_node(*src_head, *dst_head);
-	printf("%s\n", msg);
+	ft_putstr_fd(msg, 1);
 }

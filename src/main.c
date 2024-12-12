@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/11 16:08:57 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:46:19 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,36 @@
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack			*a;
+	t_stack			*b;
+	char			**arr;
+	// unsigned long	i;
 
 	(void)argc;
+	argv++;
+	arr = NULL;
+	// if (argc == 2)
+	// {
+	// 	i = -1;
+	// 	while (++i < ft_strlen(*argv))
+	// 	{
+	// 		if (!ft_isdigit((*argv)[i]) && (*argv)[i] != ' ' && (*argv)[i] != '-')
+	// 		{
+	// 			write(STDERR_FILENO, "Error\n", 6);
+	// 			return (0);
+	// 		}
+	// 	}
+	// 	arr = ft_split((const char *)(*argv), ' ');
+	// }
+	arr = argv;
 	stack_init(&a, argv);
 	b = NULL;
 	if (num_of_nodes(a) == 3)
 		sort_stack_of_three(&a);
 	else
 	{
-		push(&a, &b, false, "pab");
-		push(&a, &b, false, "pab");
+		push(&a, &b, false, "pab\n");
+		push(&a, &b, false, "pab\n");
 		while (num_of_nodes(a) > 3)
 		{
 			// print_nodes(a, b);
