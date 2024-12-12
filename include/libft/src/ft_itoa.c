@@ -68,9 +68,7 @@ char	*ft_itoa(int n)
 {
 	char	*result;
 	int		div;
-	int		i;
 
-	i = 0;
 	if (n == INT_MIN)
 		result = ft_strdup("-2147483648");
 	else
