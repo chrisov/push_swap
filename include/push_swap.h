@@ -48,11 +48,13 @@ void	node_index(t_stack *head);
 void	position_to_median(t_stack *head);
 void	calculate_cost(t_stack *src, t_stack *dest);
 void	is_cheapest(t_stack *head);
-void	target_node(t_stack *src, t_stack *dst);
+void	target_csn_node(t_stack *src, t_stack *dst);
+void	target_cbn_node(t_stack *src, t_stack *dst);
 void	stack_init(t_stack **stack, char **array);
-void	push_cheapest(t_stack **src, t_stack**dest);
+void	push_cheapest(t_stack **src, t_stack **dest, bool rev_flag);
 //
 void	print_node(t_stack *head);
 void	print_nodes(t_stack *head, t_stack *dest);
+void	print_rev_nodes(t_stack *src, t_stack *dest);
 
 #endif

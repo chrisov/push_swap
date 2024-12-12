@@ -24,7 +24,7 @@ void	node_index(t_stack *head)
 	}
 }
 
-void	target_node(t_stack *src, t_stack *dst)
+void	target_csn_node(t_stack *src, t_stack *dst)
 {
 	t_stack	*current;
 	int		target;
@@ -47,6 +47,34 @@ void	target_node(t_stack *src, t_stack *dst)
 			}
 			if (target == INT_MIN)
 				src->target_node = find_max_node(dst);
+			src = src->next_node;
+		}
+	}
+}
+
+void	target_cbn_node(t_stack *src, t_stack *dst)
+{
+	t_stack	*current;
+	int		target;
+
+	if (dst)
+	{
+		while (src)
+		{
+			src->target_node = find_min_node(dst);
+			current = dst;
+			target = INT_MAX;
+			while (current)
+			{
+				if (src->nbr < current->nbr && current->nbr < target)
+				{
+					target = current->nbr;
+					src->target_node = current;
+				}
+				current = current->next_node;
+			}
+			if (target == INT_MAX)
+				src->target_node = find_min_node(dst);
 			src = src->next_node;
 		}
 	}

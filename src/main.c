@@ -17,22 +17,29 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 
-	if (argc > 1)
+	(void)argc;
+	stack_init(&a, argv);
+	b = NULL;
+	if (num_of_nodes(a) == 3)
+		sort_stack_of_three(&a);
+	else
 	{
-		stack_init(&a, argv);
-		b = NULL;
 		push(&a, &b, false, "pab");
 		push(&a, &b, false, "pab");
 		while (num_of_nodes(a) > 3)
 		{
-			print_nodes(a, b);
-			printf("             _____________________________________________________\n\n");
-			push_cheapest(&a, &b);
+			// print_nodes(a, b);
+			push_cheapest(&a, &b, false);
 		}
-		print_nodes(a, b);
-		printf("             _____________________________________________________\n\n");
+		// print_nodes(a, b);
 		sort_stack_of_three(&a);
-		print_nodes(a, b);
+		target_cbn_node(b, a);
+		while (b)
+		{
+			// print_rev_nodes(b, a);
+			push_cheapest(&b, &a, true);
+		}
+		// print_node(a);
 	}
 }
 

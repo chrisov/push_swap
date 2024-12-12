@@ -103,6 +103,8 @@ void	push(t_stack **src_head, t_stack **dst_head, bool rev_flag, char *msg)
 	position_to_median(*src_head);
 	position_to_median(*dst_head);
 	if (!rev_flag)
-		target_node(*src_head, *dst_head);
+		target_csn_node(*src_head, *dst_head);
+	else
+		target_cbn_node(*src_head, *dst_head);
 	printf("%s\n", msg);
 }

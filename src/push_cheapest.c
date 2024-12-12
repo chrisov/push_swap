@@ -40,7 +40,7 @@ static void	push_condition(t_stack **src, t_stack **dest, t_stack *cheapest)
 	}
 }
 
-void	push_cheapest(t_stack **src, t_stack **dest)
+void	push_cheapest(t_stack **src, t_stack **dest, bool rev_flag)
 {
 	t_stack	*cheapest;
 
@@ -52,5 +52,9 @@ void	push_cheapest(t_stack **src, t_stack **dest)
 	while ((*src)->nbr != cheapest->nbr
 			|| (*dest)->nbr != cheapest->target_node->nbr)
 		push_condition(src, dest, cheapest);
-	push(src, dest, false, "pab");
+	(*src)->cheapest = false;
+	if (!rev_flag)
+		push(src, dest, false, "pab");
+	else
+		push(src, dest, true, "pba");
 }

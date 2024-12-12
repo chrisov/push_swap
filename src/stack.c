@@ -123,7 +123,7 @@ void	sort_stack_of_three(t_stack **head)
 		swap(head, "sa");
 }
 
-void	print_nodes(t_stack *src, t_stack *dest)			//<-------- PRINTF
+void	print_nodes(t_stack *src, t_stack *dest)
 {
 	calculate_cost(src, dest);
 	is_cheapest(src);
@@ -157,6 +157,45 @@ void	print_nodes(t_stack *src, t_stack *dest)			//<-------- PRINTF
 			printf(" ");
 		printf("\n");
 	}
+	printf("             _____________________________________________________\n\n");
+}
+
+void	print_rev_nodes(t_stack *src, t_stack *dest)
+{
+	calculate_cost(src, dest);
+	is_cheapest(src);
+	while (src || dest)
+	{
+		if (dest)
+		{
+			printf("%d[%d]\t", dest->nbr, dest->index);
+			if (dest->above_median == true)
+				printf("(above median)");
+			else
+				printf("(below median)");
+			printf("\t\t");
+			dest = dest->next_node;
+		}
+		else
+			printf("\t\t\t\t");
+		if (src)
+		{
+			if (src->cheapest)
+				printf("(cheapest) ");
+			else
+				printf("\t   ");
+			if (src->above_median)
+				printf("(above median) ");
+			else
+				printf("(below median) ");
+			printf("[%d]<-    %d[%d]  :(%d)", src->target_node->index, src->nbr, src->index, src->cost);
+			src = src->next_node;
+		}
+		else
+			printf(" ");
+		printf("\n");
+	}
+	printf("             _____________________________________________________\n\n");
 }
 
 void	print_node(t_stack *head)
