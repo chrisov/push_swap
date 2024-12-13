@@ -66,6 +66,12 @@ int	num_of_nodes(t_stack *head)
 	return (result);
 }
 
+void	sort_stack_of_two(t_stack **head)
+{
+	if ((*head)->nbr > (*head)->next_node->nbr)
+	swap(head);
+}
+
 void	sort_stack_of_three(t_stack **head)
 {
 	int	first;
@@ -79,20 +85,20 @@ void	sort_stack_of_three(t_stack **head)
 	{
 		rev_rotate(head, "rra\n");
 		if (first < third)
-			swap(head, "sa\n");
+			swap(head);
 	}
 	if (first > second && first > third)
 	{
 		if (second > third)
 		{
-			swap(head, "sa\n");
+			swap(head);
 			rev_rotate(head, "rra\n");
 		}
 		else
 			rotate(head, "ra\n");
 	}
 	if (third > second && third > first && first > second)
-		swap(head, "sa\n");
+		swap(head);
 }
 
 void	print_nodes(t_stack *src, t_stack *dest)

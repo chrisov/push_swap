@@ -13,7 +13,8 @@ SRCS = $(SRCDIR)/main.c\
 		$(SRCDIR)/rules.c\
 		$(SRCDIR)/push_cheapest.c\
 		$(SRCDIR)/functions.c\
-		$(SRCDIR)/node_attributes.c
+		$(SRCDIR)/node_attributes.c\
+		$(SRCDIR)/errors.c
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 LIBFT = $(LIBFTDIR)/libft.a

@@ -12,43 +12,56 @@
 
 #include "../include/push_swap.h"
 
-int	main(int argc, char **argv)
+static bool	one_num_check(char *str)
 {
-	t_stack			*a;
-	t_stack			*b;
-	char			**arr;
-
-	arr = NULL;
-	if (argc < 3)
-		arr = num_args(argv, argc);
-	else
-		arr = ++argv;
-	stack_init(&a, arr);
-	b = NULL;
-	if (num_of_nodes(a) == 2)
-		sort_stack_of_two(&a);
-	if (num_of_nodes(a) == 3)
-		sort_stack_of_three(&a);
-	else
+	while (*str)
 	{
-		push(&a, &b, false, "pab\n");
-		if (num_of_nodes(a) > 4)
-			push(&a, &b, false, "pab\n");
-		while (num_of_nodes(a) > 3)
-		{
-			print_nodes(a, b);
-			push_cheapest(&a, &b, false);
-		}
-		print_nodes(a, b);
-		sort_stack_of_three(&a);
-		target_cbn_node(b, a);
-		while (b)
-		{
-			print_rev_nodes(b, a);
-			push_cheapest(&b, &a, true);
-		}
+		if (!ft_isdigit(*str++))
+			return (false);
 	}
-	// print_node(a);
+	return (true);
 }
 
-// make run -- 16 -59 -66 44 78 -40 63 -88 80 81
+static bool	non_numeric(char *str)
+{
+	while (*str)
+	{
+		if (!(ft_isdigit(*str) || *str == '-' || *str == ' '))
+			return (true);
+		str++;
+	}
+	return (false);
+}
+
+/**
+ * @brief First checks for descending order, second one for ascending.
+ */
+bool	already_sorted(t_stack *head)
+{
+    bool	ascending;
+	bool	descending;
+
+	ascending = true;
+	descending = true;
+    while (head->next_node)
+	{
+        if (head->nbr > head->next_node->nbr)
+            ascending = false;
+        if (head->nbr < head->next_node->nbr)
+            descending = false;
+		head = head->next_node;
+	}
+    return (ascending || descending);
+}
+
+char	**num_args(char **arr, int len)
+{
+	if (len == 1 || one_num_check(arr[1]))
+		exit(1);
+	if (non_numeric(arr[1]))
+	{
+		write(STDERR_FILENO, "Error\n", 6);
+		exit(1);
+	}
+	return (ft_split(arr[1], ' '));
+}

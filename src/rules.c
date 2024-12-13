@@ -69,7 +69,7 @@ void	rr_rrr(t_stack **s1, t_stack **s2, void (*f)(t_stack **, char *), char *msg
 /**
  * @brief Swaps first and second node.
  */
-void	swap(t_stack **head, char *msg)
+void	swap(t_stack **head)
 {
 	t_stack *first;
 	t_stack	*second;
@@ -81,7 +81,7 @@ void	swap(t_stack **head, char *msg)
 	*head = second;
 	node_index(*head);
 	position_to_median(*head);
-	ft_putstr_fd(msg, 1);
+	ft_putstr_fd("sa\n", 1);
 }
 
 /**
