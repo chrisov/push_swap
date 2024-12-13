@@ -12,6 +12,9 @@
 
 #include "../include/push_swap.h"
 
+/**
+ * @brief Finds the node with the max value in the stack.
+ */
 t_stack	*find_max_node(t_stack *head)
 {
 	t_stack *max;
@@ -26,6 +29,9 @@ t_stack	*find_max_node(t_stack *head)
 	return (max);
 }
 
+/**
+ * @brief Finds the node with the max value in the stack.
+ */
 t_stack	*find_min_node(t_stack *head)
 {
 	t_stack *min;
@@ -39,3 +45,45 @@ t_stack	*find_min_node(t_stack *head)
 	}
 	return (min);
 }
+
+/**
+ * @brief Last step to bring the min value to the top of the stack.
+ */
+void	bring_min_top(t_stack **head)
+{
+	t_stack	*min;
+
+	min = find_min_node(*head);
+	while ((*head)->nbr != min->nbr)
+	{
+		if (min->above_median)
+			rotate(head,"ra\n");
+		else
+			rev_rotate(head, "rra\n");
+	}
+}
+
+void	free_list(t_stack **head, char **array, int len)
+{
+    t_stack *current;
+    t_stack *next;
+	char	**ptr;
+
+	if (len == 2)
+	{
+		ptr = array;
+		while (*ptr)
+			free(*ptr), ptr++;
+		free(array);
+	}
+	current = *head;
+	while (current != NULL)
+	{
+		next = current->next_node;
+		free(current);
+		current = next;
+	}
+	*head = NULL;
+}
+
+// free()

@@ -12,6 +12,9 @@
 
 #include "../include/push_swap.h"
 
+/**
+ * @brief Checks if the arg is only one number.
+ */
 static bool	one_num_check(char *str)
 {
 	while (*str)
@@ -22,36 +25,18 @@ static bool	one_num_check(char *str)
 	return (true);
 }
 
+/**
+ * @brief Checks if there are invalid arguments.
+ */
 static bool	non_numeric(char *str)
 {
 	while (*str)
 	{
-		if (!(ft_isdigit(*str) || *str == '-' || *str == ' '))
+		if (!(ft_isdigit(*str) || *str == '-' || *str == '+' || *str == ' '))
 			return (true);
 		str++;
 	}
 	return (false);
-}
-
-/**
- * @brief First checks for descending order, second one for ascending.
- */
-bool	already_sorted(t_stack *head)
-{
-    bool	ascending;
-	bool	descending;
-
-	ascending = true;
-	descending = true;
-    while (head->next_node)
-	{
-        if (head->nbr > head->next_node->nbr)
-            ascending = false;
-        if (head->nbr < head->next_node->nbr)
-            descending = false;
-		head = head->next_node;
-	}
-    return (ascending || descending);
 }
 
 char	**num_args(char **arr, int len)
@@ -65,3 +50,62 @@ char	**num_args(char **arr, int len)
 	}
 	return (ft_split(arr[1], ' '));
 }
+
+bool	already_sorted(t_stack *head)
+{
+    while (head->next_node)
+	{
+        if (head->nbr > head->next_node->nbr)
+            return (false);
+		head = head->next_node;
+	}
+    return (true);
+}
+
+void	sort_stack(t_stack **stack1, t_stack **stack2)
+{
+	if (num_of_nodes(*stack1) == 2)
+		sort_stack_of_two(stack1);
+	if (num_of_nodes(*stack1) == 3)
+		sort_stack_of_three(stack1);
+	else
+	{
+		push(stack1, stack2, false, "pb\n");
+		if (num_of_nodes(*stack1) > 4)
+			push(stack1, stack2, false, "pb\n");
+		while (num_of_nodes(*stack1) > 3)	
+			push_cheapest(stack1, stack2, false);
+		sort_stack_of_three(stack1);
+		target_cbn_node(*stack2, *stack1);
+		while (*stack2)
+			push_cheapest(stack2, stack1, true);
+	}
+}
+
+// void	sort_stack(t_stack **stack1, t_stack **stack2)
+// {
+// 	if (num_of_nodes(*stack1) == 2)
+// 		sort_stack_of_two(stack1);
+// 	if (num_of_nodes(*stack1) == 3)
+// 		sort_stack_of_three(stack1);
+// 	else
+// 	{
+// 		push(stack1, stack2, false, "pb\n");
+// 		if (num_of_nodes(*stack1) > 4)
+// 			push(stack1, stack2, false, "pb\n");
+// 		while (num_of_nodes(*stack1) > 3)
+// 		{
+// 			print_nodes(*stack1, *stack2);
+// 			push_cheapest(stack1, stack2, false);
+// 		}
+// 		print_nodes(*stack1, *stack2);
+// 		sort_stack_of_three(stack1);
+// 		target_cbn_node(*stack2, *stack1);
+// 		while (*stack2)
+// 		{
+// 			print_rev_nodes(*stack2, *stack1);
+// 			push_cheapest(stack2, stack1, true);
+// 		}
+// 	}
+// 	print_node(*stack1);
+// }

@@ -12,30 +12,50 @@
 
 #include "../include/push_swap.h"
 
-static void	push_condition(t_stack **src, t_stack **dest, t_stack *cheapest)
+static void	push_cond(t_stack **src, t_stack **dest, t_stack *cheap, bool rv_flg)
 {
-	if (cheapest->index == cheapest->target_node->index)
+	if (cheap->index == cheap->target_node->index)
 	{
-		if (cheapest->above_median)
+		if (cheap->above_median)
 			rr_rrr(src, dest, rotate, "rr\n");
 		else
 			rr_rrr(src, dest, rev_rotate, "rrr\n");
 	}
 	else
 	{
-		if (cheapest->index > cheapest->target_node->index)
+		if (cheap->index > cheap->target_node->index)
 		{
-			if (cheapest->above_median)
-				rotate(src, "ra\n");
+			if (cheap->above_median)
+			{
+				if (!rv_flg)
+					rotate(src, "ra\n");
+				else
+					rotate(src, "rb\n");
+			}
 			else
-				rev_rotate(src, "rra\n");
+			{
+				if (!rv_flg)
+					rev_rotate(src, "rra\n");
+				else
+					rev_rotate(src, "rrb\n");
+			}
 		}
 		else
 		{
-			if (cheapest->target_node->above_median)
-				rotate(dest, "rb\n");
+			if (cheap->target_node->above_median)
+			{
+				if (!rv_flg)
+					rotate(dest, "rb\n");
+				else
+					rotate(dest, "ra\n");
+			}
 			else
-				rev_rotate(dest, "rrb\n");
+			{
+				if (!rv_flg)
+					rev_rotate(dest, "rrb\n");
+				else
+					rev_rotate(dest, "rra\n");
+			}
 		}
 	}
 }
@@ -51,10 +71,10 @@ void	push_cheapest(t_stack **src, t_stack **dest, bool rev_flag)
 		cheapest = cheapest->next_node;
 	while ((*src)->nbr != cheapest->nbr
 		|| (*dest)->nbr != cheapest->target_node->nbr)
-		push_condition(src, dest, cheapest);
+		push_cond(src, dest, cheapest, rev_flag);
 	(*src)->cheapest = false;
 	if (!rev_flag)
-		push(src, dest, false, "pab\n");
+		push(src, dest, false, "pb\n");
 	else
-		push(src, dest, true, "pba\n");
+		push(src, dest, true, "pa\n");
 }

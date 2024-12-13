@@ -56,6 +56,10 @@ void	stack_init(t_stack **stack, char **array);
 void	push_cheapest(t_stack **src, t_stack **dest, bool rev_flag);
 char	**num_args(char **arr, int len);
 void	sort_stack_of_two(t_stack **head);
+bool	already_sorted(t_stack *head);
+void	sort_stack(t_stack **stack1, t_stack **stack2);
+void	bring_min_top(t_stack **head);
+void	free_list(t_stack **head, char **array, int len);
 //
 void	print_node(t_stack *head);
 void	print_nodes(t_stack *head, t_stack *dest);

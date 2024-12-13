@@ -48,6 +48,8 @@ void	stack_init(t_stack **head, char **array)
 		current->index = current->previous_node->index + 1;
 		array++;
 	}
+	if (already_sorted(*head))
+		exit(1);
 }
 
 /**

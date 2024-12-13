@@ -25,30 +25,10 @@ int	main(int argc, char **argv)
 		arr = ++argv;
 	stack_init(&a, arr);
 	b = NULL;
-	if (num_of_nodes(a) == 2)
-		sort_stack_of_two(&a);
-	if (num_of_nodes(a) == 3)
-		sort_stack_of_three(&a);
-	else
-	{
-		push(&a, &b, false, "pab\n");
-		if (num_of_nodes(a) > 4)
-			push(&a, &b, false, "pab\n");
-		while (num_of_nodes(a) > 3)
-		{
-			print_nodes(a, b);
-			push_cheapest(&a, &b, false);
-		}
-		print_nodes(a, b);
-		sort_stack_of_three(&a);
-		target_cbn_node(b, a);
-		while (b)
-		{
-			print_rev_nodes(b, a);
-			push_cheapest(&b, &a, true);
-		}
-	}
+	sort_stack(&a, &b);
+	bring_min_top(&a);
 	// print_node(a);
+	free_list(&a, arr, argc);
 }
 
 // make run -- 16 -59 -66 44 78 -40 63 -88 80 81
