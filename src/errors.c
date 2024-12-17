@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/12 16:46:19 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:39:34 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ char	**num_args(char **arr, int len)
 
 bool	already_sorted(t_stack *head)
 {
-    while (head->next_node)
+	while (head->next_node)
 	{
-        if (head->nbr > head->next_node->nbr)
-            return (false);
+		if (head->nbr > head->next_node->nbr)
+			return (false);
 		head = head->next_node;
 	}
-    return (true);
+	return (true);
 }
 
 void	sort_stack(t_stack **stack1, t_stack **stack2)

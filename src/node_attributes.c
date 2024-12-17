@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/11 15:11:48 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:40:43 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	is_cheapest(t_stack *head)
 		}
 		current = current->next_node;
 	}
-	while (cheapest_index-- >0)
+	while (cheapest_index-- > 0)
 		head = head->next_node;
 	head->cheapest = true;
 }

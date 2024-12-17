@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/12 16:44:24 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:41:59 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_stack	*new_node(int value)
 void	stack_init(t_stack **head, char **array)
 {
 	t_stack	*current;
-	t_stack *temp;
+	t_stack	*temp;
 
 
 	(*head) = new_node(ft_atoi(*array));
@@ -71,7 +71,7 @@ int	num_of_nodes(t_stack *head)
 void	sort_stack_of_two(t_stack **head)
 {
 	if ((*head)->nbr > (*head)->next_node->nbr)
-	swap(head);
+		swap(head);
 }
 
 void	sort_stack_of_three(t_stack **head)

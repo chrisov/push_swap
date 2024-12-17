@@ -6,14 +6,14 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/12 15:10:33 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:11:33 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../include/libft/include/libft.h"
+# include "libft/include/libft.h"
 
 # include <stdlib.h>
 # include <stdbool.h>

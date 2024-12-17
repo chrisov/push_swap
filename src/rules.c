@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/12 15:23:24 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:41:26 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	rr_rrr(t_stack **s1, t_stack **s2, void (*f)(t_stack **, char *), char *msg
  */
 void	swap(t_stack **head)
 {
-	t_stack *first;
+	t_stack	*first;
 	t_stack	*second;
 
 	first = (*head);

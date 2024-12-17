@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/11 11:56:41 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:38:20 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	bring_min_top(t_stack **head)
 	while ((*head)->nbr != min->nbr)
 	{
 		if (min->above_median)
-			rotate(head,"ra\n");
+			rotate(head, "ra\n");
 		else
 			rev_rotate(head, "rra\n");
 	}
@@ -65,15 +65,18 @@ void	bring_min_top(t_stack **head)
 
 void	free_list(t_stack **head, char **array, int len)
 {
-    t_stack *current;
-    t_stack *next;
+	t_stack	*current;
+	t_stack	*next;
 	char	**ptr;
 
 	if (len == 2)
 	{
 		ptr = array;
 		while (*ptr)
-			free(*ptr), ptr++;
+		{
+			free(*ptr);
+			ptr++;
+		}
 		free(array);
 	}
 	current = *head;
@@ -85,5 +88,3 @@ void	free_list(t_stack **head, char **array, int len)
 	}
 	*head = NULL;
 }
-
-// free()
