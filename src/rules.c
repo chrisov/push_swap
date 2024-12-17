@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/16 14:41:26 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:54:05 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void	rev_rotate(t_stack **head, char *msg)
 /**
  * @brief Rotate both stacks at the same time.
  */
-void	rr_rrr(t_stack **s1, t_stack **s2, void (*f)(t_stack **, char *), char *msg)
+void	rrr(t_stack **s1, t_stack **s2, void (*f)(t_stack **, char *), char *m)
 {
 	f(s1, NULL);
 	f(s2, NULL);
-	ft_putstr_fd(msg, 1);
+	ft_putstr_fd(m, 1);
 }
 
 /**

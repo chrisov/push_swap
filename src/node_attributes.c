@@ -6,12 +6,15 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/16 14:40:43 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:51:47 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * @brief Calculates the index value of the node in the stack.
+ */
 void	node_index(t_stack *head)
 {
 	int	index;
@@ -24,6 +27,13 @@ void	node_index(t_stack *head)
 	}
 }
 
+/**
+ * @brief Calculates the target node of the given src node as the one with the 
+ * closest smaller number, during the transfering to stack b phase.
+ * 
+ * @note If no node with closest smaller number is found, then points to the
+ * biggest one in the b stack. 
+ */
 void	target_csn_node(t_stack *src, t_stack *dst)
 {
 	t_stack	*current;
@@ -52,6 +62,13 @@ void	target_csn_node(t_stack *src, t_stack *dst)
 	}
 }
 
+/**
+ * @brief Calculates the target node of the given src node as the one with the 
+ * closest bigger number, during the transfering back to stack a phase.
+ * 
+ * @note If no node with closest bigger number is found, then points to the
+ * smallest one in the a stack.
+ */
 void	target_cbn_node(t_stack *src, t_stack *dst)
 {
 	t_stack	*current;
@@ -80,6 +97,10 @@ void	target_cbn_node(t_stack *src, t_stack *dst)
 	}
 }
 
+/**
+ * @brief Determines the position of the node in the stack, in relation to
+ * the stack's median.
+ */
 void	position_to_median(t_stack *head)
 {
 	int		len;
@@ -103,6 +124,9 @@ void	position_to_median(t_stack *head)
 	}
 }
 
+/**
+ * @brief Gives the is_cheapest flag to the node with the smallest cost. 
+ */
 void	is_cheapest(t_stack *head)
 {
 	t_stack	*current;
@@ -124,39 +148,4 @@ void	is_cheapest(t_stack *head)
 	while (cheapest_index-- > 0)
 		head = head->next_node;
 	head->cheapest = true;
-}
-
-static int	max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
-
-void	calculate_cost(t_stack *src, t_stack *dest)
-{
-	t_stack	*current;
-	int		cost;
-
-	current = src;
-	while (current)
-	{
-		cost = 0;
-		if (current->above_median)
-		{
-			if (current->target_node->above_median)
-				cost = max(current->index, current->target_node->index);
-			else
-				cost = current->index + num_of_nodes(dest) - current->target_node->index;
-		}
-		else
-		{
-			if (current->target_node->above_median)
-				cost = num_of_nodes(src) - current->index + current->target_node->index;
-			else
-				cost = max(num_of_nodes(src) - current->index, num_of_nodes(dest) - current->target_node->index);
-		}
-		current->cost = cost;
-		current = current->next_node;
-	}
 }

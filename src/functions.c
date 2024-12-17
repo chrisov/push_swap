@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:16 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/16 14:38:20 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:05:24 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
  */
 t_stack	*find_max_node(t_stack *head)
 {
-	t_stack *max;
-	
+	t_stack	*max;
+
 	max = head;
 	while (head)
 	{
@@ -34,8 +34,8 @@ t_stack	*find_max_node(t_stack *head)
  */
 t_stack	*find_min_node(t_stack *head)
 {
-	t_stack *min;
-	
+	t_stack	*min;
+
 	min = head;
 	while (head)
 	{
@@ -61,6 +61,20 @@ void	bring_min_top(t_stack **head)
 		else
 			rev_rotate(head, "rra\n");
 	}
+}
+
+/**
+ * @brief Checks if the input arr is already sorted.
+ */
+bool	already_sorted(t_stack *head)
+{
+	while (head->next_node)
+	{
+		if (head->nbr > head->next_node->nbr)
+			return (false);
+		head = head->next_node;
+	}
+	return (true);
 }
 
 void	free_list(t_stack **head, char **array, int len)

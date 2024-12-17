@@ -6,79 +6,50 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/16 14:39:34 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:14:56 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-/**
- * @brief Checks if the arg is only one number.
- */
-static bool	one_num_check(char *str)
+static long	ft_atol(const char *str)
 {
-	while (*str)
-	{
-		if (!ft_isdigit(*str++))
-			return (false);
-	}
-	return (true);
-}
+	long	res;
+	int	count;
+	int	sign;
 
-/**
- * @brief Checks if there are invalid arguments.
- */
-static bool	non_numeric(char *str)
-{
-	while (*str)
+	res = 0;
+	count = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	while (*str == '-' || *str == '+')
 	{
-		if (!(ft_isdigit(*str) || *str == '-' || *str == '+' || *str == ' '))
-			return (true);
+		if (*str == '-')
+			sign *= -1;
+		if (count > 0)
+			return (0);
+		str++;
+		count++;
+	}
+	while (*str && ft_isdigit(*str))
+	{
+		res = res * 10 + (*str - '0');
 		str++;
 	}
-	return (false);
+	return (sign * res);
 }
 
-char	**num_args(char **arr, int len)
+void	out_of_range_check(char **arr)
 {
-	if (len == 1 || one_num_check(arr[1]))
-		exit(1);
-	if (non_numeric(arr[1]))
+	while (*arr)
 	{
-		write(STDERR_FILENO, "Error\n", 6);
-		exit(1);
-	}
-	return (ft_split(arr[1], ' '));
-}
-
-bool	already_sorted(t_stack *head)
-{
-	while (head->next_node)
-	{
-		if (head->nbr > head->next_node->nbr)
-			return (false);
-		head = head->next_node;
-	}
-	return (true);
-}
-
-void	sort_stack(t_stack **stack1, t_stack **stack2)
-{
-	if (num_of_nodes(*stack1) == 2)
-		sort_stack_of_two(stack1);
-	if (num_of_nodes(*stack1) == 3)
-		sort_stack_of_three(stack1);
-	else
-	{
-		push(stack1, stack2, false, "pb\n");
-		if (num_of_nodes(*stack1) > 4)
-			push(stack1, stack2, false, "pb\n");
-		while (num_of_nodes(*stack1) > 3)	
-			push_cheapest(stack1, stack2, false);
-		sort_stack_of_three(stack1);
-		target_cbn_node(*stack2, *stack1);
-		while (*stack2)
-			push_cheapest(stack2, stack1, true);
+		if (ft_atol(*arr) > INT_MAX || ft_atol(*arr) < INT_MIN)
+		{
+			write(STDERR_FILENO, "Error\n", 6);
+			exit(1);
+		}
+		arr++;
 	}
 }
 
