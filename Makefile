@@ -11,9 +11,9 @@ LIBFTDIR = ./include/libft
 SRCS = $(SRCDIR)/main.c\
 		$(SRCDIR)/stack.c\
 		$(SRCDIR)/rules.c\
-		$(SRCDIR)/push_cheapest.c\
 		$(SRCDIR)/functions.c\
 		$(SRCDIR)/node_attributes.c\
+		$(SRCDIR)/node_attributes2.c\
 		$(SRCDIR)/errors.c\
 		$(SRCDIR)/push_cond.c
 
