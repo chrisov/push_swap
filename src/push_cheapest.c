@@ -22,86 +22,47 @@ static int	max(int a, int b)
 	return (b);
 }
 
-static void	push_cond(t_stack **src, t_stack **dest, t_stack *cheap, bool rv_flg)
-{
-	if (cheap->index == cheap->target_node->index)
-	{
-		if (cheap->above_median)
-			rrr(src, dest, rotate, "rr\n");
-		else
-			rrr(src, dest, rev_rotate, "rrr\n");
-	}
-	else
-	{
-		if (cheap->index > cheap->target_node->index)
-		{
-			if (cheap->above_median)
-			{
-				if (!rv_flg)
-					rotate(src, "ra\n");
-				else
-					rotate(src, "rb\n");
-			}
-			else
-			{
-				if (!rv_flg)
-					rev_rotate(src, "rra\n");
-				else
-					rev_rotate(src, "rrb\n");
-			}
-		}
-		else
-		{
-			if (cheap->target_node->above_median)
-			{
-				if (!rv_flg)
-					rotate(dest, "rb\n");
-				else
-					rotate(dest, "ra\n");
-			}
-			else
-			{
-				if (!rv_flg)
-					rev_rotate(dest, "rrb\n");
-				else
-					rev_rotate(dest, "rra\n");
-			}
-		}
-	}
-}
+// static void	rotate_cheap(t_stack **stack, t_stack *cheap, bool rev_flag)
+// {
+// 	if (cheap->above_median)
+// 	{
+// 		if (!rev_flag)
+// 			rotate(stack, "ra\n");
+// 		else
+// 			rotate(stack, "rb\n");
+// 	}
+// 	else
+// 	{
+// 		if (!rev_flag)
+// 			rev_rotate(stack, "rra\n");
+// 		else
+// 			rev_rotate(stack, "rrb\n");
+// 	}
+// }
+
+// static void	push_cond(t_stack **src, t_stack **dst, t_stack *cheap, bool rv_flg)
+// {
+// 	if (cheap->i == cheap->target->i)
+// 	{
+// 		if (cheap->above_median)
+// 			rrr(src, dst, rotate, "rr\n");
+// 		else
+// 			rrr(src, dst, rev_rotate, "rrr\n");
+// 	}
+// 	else
+// 	{
+// 		if (cheap->i > cheap->target->i)
+// 			rotate_cheap(src, cheap, rv_flg);
+// 		else
+// 			rotate_cheap(dst, cheap, rv_flg);
+// 	}
+// }
 
 /**
- * @brief Calculates the node's cost of transferring it to the other stack.
+ * @brief Pushes the cheapest node from one stack to the other.
+ * 
+ * @note When rev_flag == true, means it pushes back from b to a.
  */
-void	calculate_cost(t_stack *src, t_stack *dest)
-{
-	t_stack	*current;
-	int		cost;
-
-	current = src;
-	while (current)
-	{
-		cost = 0;
-		if (current->above_median)
-		{
-			if (current->target_node->above_median)
-				cost = max(current->index, current->target_node->index);
-			else
-				cost = current->index + num_of_nodes(dest) - current->target_node->index;
-		}
-		else
-		{
-			if (current->target_node->above_median)
-				cost = num_of_nodes(src) - current->index + current->target_node->index;
-			else
-				cost = max(num_of_nodes(src) - current->index, num_of_nodes(dest) - current->target_node->index);
-		}
-		current->cost = cost;
-		current = current->next_node;
-	}
-}
-
-
 void	push_cheapest(t_stack **src, t_stack **dest, bool rev_flag)
 {
 	t_stack	*cheapest;
@@ -112,11 +73,42 @@ void	push_cheapest(t_stack **src, t_stack **dest, bool rev_flag)
 	while (cheapest->cheapest == false)
 		cheapest = cheapest->next_node;
 	while ((*src)->nbr != cheapest->nbr
-		|| (*dest)->nbr != cheapest->target_node->nbr)
+		|| (*dest)->nbr != cheapest->target->nbr)
 		push_cond(src, dest, cheapest, rev_flag);
 	(*src)->cheapest = false;
 	if (!rev_flag)
 		push(src, dest, false, "pb\n");
 	else
 		push(src, dest, true, "pa\n");
+}
+
+/**
+ * @brief Calculates the node's cost of transferring it to the other stack.
+ */
+void	calculate_cost(t_stack *s, t_stack *d)
+{
+	t_stack	*ptr;
+	int		cost;
+
+	ptr = s;
+	while (ptr)
+	{
+		cost = 0;
+		if (ptr->above_median)
+		{
+			if (ptr->target->above_median)
+				cost = max(ptr->i, ptr->target->i);
+			else
+				cost = ptr->i + stck_len(d) - ptr->target->i;
+		}
+		else
+		{
+			if (ptr->target->above_median)
+				cost = stck_len(s) - ptr->i + ptr->target->i;
+			else
+				cost = max(stck_len(s) - ptr->i, stck_len(d) - ptr->target->i);
+		}
+		ptr->cost = cost;
+		ptr = ptr->next_node;
+	}
 }

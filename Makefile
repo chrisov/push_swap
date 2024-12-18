@@ -14,7 +14,8 @@ SRCS = $(SRCDIR)/main.c\
 		$(SRCDIR)/push_cheapest.c\
 		$(SRCDIR)/functions.c\
 		$(SRCDIR)/node_attributes.c\
-		$(SRCDIR)/errors.c
+		$(SRCDIR)/errors.c\
+		$(SRCDIR)/push_cond.c
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 LIBFT = $(LIBFTDIR)/libft.a

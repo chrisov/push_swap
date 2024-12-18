@@ -12,6 +12,9 @@
 
 #include "../include/push_swap.h"
 
+/**
+ * @brief Converts a str representation of a number to long format.
+ */
 static long	ft_atol(const char *str)
 {
 	long	res;
@@ -40,6 +43,9 @@ static long	ft_atol(const char *str)
 	return (sign * res);
 }
 
+/**
+ * @brief Checks the input args if they are getting out of INT range.
+ */
 void	out_of_range_check(char **arr)
 {
 	while (*arr)
@@ -55,16 +61,16 @@ void	out_of_range_check(char **arr)
 
 // void	sort_stack(t_stack **stack1, t_stack **stack2)
 // {
-// 	if (num_of_nodes(*stack1) == 2)
+// 	if (stck_len(*stack1) == 2)
 // 		sort_stack_of_two(stack1);
-// 	if (num_of_nodes(*stack1) == 3)
+// 	if (stck_len(*stack1) == 3)
 // 		sort_stack_of_three(stack1);
 // 	else
 // 	{
 // 		push(stack1, stack2, false, "pb\n");
-// 		if (num_of_nodes(*stack1) > 4)
+// 		if (stck_len(*stack1) > 4)
 // 			push(stack1, stack2, false, "pb\n");
-// 		while (num_of_nodes(*stack1) > 3)
+// 		while (stck_len(*stack1) > 3)
 // 		{
 // 			print_nodes(*stack1, *stack2);
 // 			push_cheapest(stack1, stack2, false);

@@ -77,6 +77,9 @@ bool	already_sorted(t_stack *head)
 	return (true);
 }
 
+/**
+ * @brief Frees allocated stack as well as the allocated arr if it is needed.
+ */
 void	free_list(t_stack **head, char **array, int len)
 {
 	t_stack	*current;

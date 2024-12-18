@@ -22,7 +22,7 @@ void	node_index(t_stack *head)
 	index = 0;
 	while (head)
 	{
-		head->index = index++;
+		head->i = index++;
 		head = head->next_node;
 	}
 }
@@ -43,7 +43,7 @@ void	target_csn_node(t_stack *src, t_stack *dst)
 	{
 		while (src)
 		{
-			src->target_node = find_max_node(dst);
+			src->target = find_max_node(dst);
 			current = dst;
 			target = INT_MIN;
 			while (current)
@@ -51,12 +51,12 @@ void	target_csn_node(t_stack *src, t_stack *dst)
 				if (src->nbr > current->nbr && current->nbr > target)
 				{
 					target = current->nbr;
-					src->target_node = current;
+					src->target = current;
 				}
 				current = current->next_node;
 			}
 			if (target == INT_MIN)
-				src->target_node = find_max_node(dst);
+				src->target = find_max_node(dst);
 			src = src->next_node;
 		}
 	}
@@ -78,7 +78,7 @@ void	target_cbn_node(t_stack *src, t_stack *dst)
 	{
 		while (src)
 		{
-			src->target_node = find_min_node(dst);
+			src->target = find_min_node(dst);
 			current = dst;
 			target = INT_MAX;
 			while (current)
@@ -86,12 +86,12 @@ void	target_cbn_node(t_stack *src, t_stack *dst)
 				if (src->nbr < current->nbr && current->nbr < target)
 				{
 					target = current->nbr;
-					src->target_node = current;
+					src->target = current;
 				}
 				current = current->next_node;
 			}
 			if (target == INT_MAX)
-				src->target_node = find_min_node(dst);
+				src->target = find_min_node(dst);
 			src = src->next_node;
 		}
 	}
@@ -105,7 +105,7 @@ void	position_to_median(t_stack *head)
 {
 	int		len;
 
-	len = num_of_nodes(head);
+	len = stck_len(head);
 	if (len == 2)
 	{
 		head->above_median = true;
@@ -115,7 +115,7 @@ void	position_to_median(t_stack *head)
 	{
 		while (head)
 		{
-			if (head->index <= len / 2)
+			if (head->i <= len / 2)
 				head->above_median = true;
 			else
 				head->above_median = false;
@@ -134,14 +134,14 @@ void	is_cheapest(t_stack *head)
 	int		cheapest_index;
 
 	min_cost = head->cost;
-	cheapest_index = head->index;
+	cheapest_index = head->i;
 	current = head;
 	while (current)
 	{
 		if (current->cost < min_cost)
 		{
 			min_cost = current->cost;
-			cheapest_index = current->index;
+			cheapest_index = current->i;
 		}
 		current = current->next_node;
 	}

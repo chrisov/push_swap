@@ -59,16 +59,16 @@ static char	**num_args(char **arr, int len)
  */
 static void	sort_stack(t_stack **stack1, t_stack **stack2)
 {
-	if (num_of_nodes(*stack1) == 2)
+	if (stck_len(*stack1) == 2)
 		sort_stack_of_two(stack1);
-	if (num_of_nodes(*stack1) == 3)
+	if (stck_len(*stack1) == 3)
 		sort_stack_of_three(stack1);
 	else
 	{
 		push(stack1, stack2, false, "pb\n");
-		if (num_of_nodes(*stack1) > 4)
+		if (stck_len(*stack1) > 4)
 			push(stack1, stack2, false, "pb\n");
-		while (num_of_nodes(*stack1) > 3)	
+		while (stck_len(*stack1) > 3)	
 			push_cheapest(stack1, stack2, false);
 		sort_stack_of_three(stack1);
 		target_cbn_node(*stack2, *stack1);

@@ -39,7 +39,7 @@ void	stack_init(t_stack **head, char **array)
 
 
 	(*head) = new_node(ft_atoi(*array));
-	(*head)->index = 0;
+	(*head)->i = 0;
 	current = (*head);
 	array++;
 	while (*array)
@@ -48,7 +48,7 @@ void	stack_init(t_stack **head, char **array)
 		current->next_node = new_node(ft_atoi(*array));
 		current = current->next_node;
 		current->previous_node = temp;
-		current->index = current->previous_node->index + 1;
+		current->i = current->previous_node->i + 1;
 		array++;
 	}
 	if (already_sorted(*head))
@@ -58,7 +58,7 @@ void	stack_init(t_stack **head, char **array)
 /**
  * @brief Counts the number of nodes in a stack
  */
-int	num_of_nodes(t_stack *head)
+int	stck_len(t_stack *head)
 {
 	int	result;
 
@@ -120,7 +120,7 @@ void	sort_stack_of_three(t_stack **head)
 // 	{
 // 		if (src)
 // 		{
-// 			printf("(%d): %d[%d]\t->[%d] ",src->cost, src->nbr, src->index, src->target_node->index);
+// 			printf("(%d): %d[%d]\t->[%d] ",src->cost, src->nbr, src->i, src->target->i);
 // 			if (src->above_median)
 // 				printf("(above median)");
 // 			else
@@ -135,7 +135,7 @@ void	sort_stack_of_three(t_stack **head)
 // 			printf("\t\t\t\t\t\t\t");
 // 		if (dest)
 // 		{
-// 			printf("%d[%d]\t", dest->nbr, dest->index);
+// 			printf("%d[%d]\t", dest->nbr, dest->i);
 // 			if (dest->above_median == true)
 // 				printf("(above median)");
 // 			else
@@ -157,7 +157,7 @@ void	sort_stack_of_three(t_stack **head)
 // 	{
 // 		if (dest)
 // 		{
-// 			printf("%d[%d]\t", dest->nbr, dest->index);
+// 			printf("%d[%d]\t", dest->nbr, dest->i);
 // 			if (dest->above_median == true)
 // 				printf("(above median)");
 // 			else
@@ -177,7 +177,7 @@ void	sort_stack_of_three(t_stack **head)
 // 				printf("(above median) ");
 // 			else
 // 				printf("(below median) ");
-// 			printf("[%d]<-    %d[%d]  :(%d)", src->target_node->index, src->nbr, src->index, src->cost);
+// 			printf("[%d]<-    %d[%d]  :(%d)", src->target->i, src->nbr, src->i, src->cost);
 // 			src = src->next_node;
 // 		}
 // 		else
@@ -191,7 +191,7 @@ void	sort_stack_of_three(t_stack **head)
 // {
 // 	while (head)
 // 	{
-// 		printf("%d[%d] -> ", head->nbr, head->index);
+// 		printf("%d[%d] -> ", head->nbr, head->i);
 // 		head = head->next_node;
 // 	}
 // 	printf("NULL\n");
