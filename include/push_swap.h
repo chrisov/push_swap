@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/17 19:12:49 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:52:20 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,32 @@ void	rev_rotate(t_stack **head, char *msg);
 void	swap(t_stack **head);
 void	push(t_stack **src_head, t_stack **dst_head, bool rev_flag, char *msg);
 
+// Functions
 t_stack	*find_max_node(t_stack *head);
 t_stack	*find_min_node(t_stack *head);
 int		stck_len(t_stack *head);
-int		cost_calc(t_stack *src, t_stack *dest);
+void	bring_min_top(t_stack **head);
+
+// Error check
 bool	already_sorted(t_stack *head);
-void	sort_stack_of_three(t_stack **head);
+void	out_of_range_check(char **arr);
+
+// Node attributes
 void	node_index(t_stack *head);
 void	position_to_median(t_stack *head);
 void	calculate_cost(t_stack *src, t_stack *dest);
 void	is_cheapest(t_stack *head);
 void	target_csn_node(t_stack *src, t_stack *dst);
 void	target_cbn_node(t_stack *src, t_stack *dst);
+
+// Stack
 void	stack_init(t_stack **stack, char **array);
-void	push_cheapest(t_stack **src, t_stack **dest, bool rev_flag);
 void	sort_stack_of_two(t_stack **head);
-void	bring_min_top(t_stack **head);
-void	free_list(t_stack **head, char **array, int len);
-void	out_of_range_check(char **arr);
+void	sort_stack_of_three(t_stack **head);
 void	push_cond(t_stack **src, t_stack **dst, t_stack *cheap, bool rev_flag);
-//
+void	push_cheapest(t_stack **src, t_stack **dest, bool rev_flag);
+void	free_list(t_stack **head, char **array, int len);
+
 // void	print_node(t_stack *head);
 // void	print_nodes(t_stack *head, t_stack *dest);
 // void	print_rev_nodes(t_stack *src, t_stack *dest);
