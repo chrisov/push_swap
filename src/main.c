@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/21 14:08:16 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:37:04 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static bool	non_numeric(char *str)
 static char	**num_args(char **arr, int len)
 {
 	if (len == 1 || one_num_check(arr[1]))
-		exit(1);
+		exit(0);
 	if (non_numeric(arr[1]))
 	{
 		write(STDERR_FILENO, "Error\n", 6);
-		exit(1);
+		exit(0);
 	}
 	return (ft_split(arr[1], ' '));
 }

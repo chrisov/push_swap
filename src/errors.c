@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/21 14:07:29 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:36:52 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	out_of_range_check(char **arr)
 		if (ft_atol(*arr) > INT_MAX || ft_atol(*arr) < INT_MIN)
 		{
 			write(STDERR_FILENO, "Error\n", 6);
-			exit(1);
+			exit(0);
 		}
 		arr++;
 	}

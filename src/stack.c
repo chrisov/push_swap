@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/21 14:09:26 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:37:11 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	stack_init(t_stack **head, char **array)
 		array++;
 	}
 	if (already_sorted(*head))
-		exit(1);
+		exit(0);
 }
 
 /**
