@@ -6,52 +6,35 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/21 14:37:04 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:16:40 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
 /**
- * @brief Checks if the arg is only one number.
- */
-static bool	one_num_check(char *str)
-{
-	while (*str)
-	{
-		if (!ft_isdigit(*str++))
-			return (false);
-	}
-	return (true);
-}
-
-/**
  * @brief Checks if there are invalid arguments.
- */
-static bool	non_numeric(char *str)
+//  */
+static void	non_numeric_check(char **s)
 {
-	while (*str)
-	{
-		if (!(ft_isdigit(*str) || *str == '-' || *str == '+' || *str == ' '))
-			return (true);
-		str++;
-	}
-	return (false);
-}
+	int	i;
+	int	j;
 
-/**
- * @brief Creates the input arr, depending on the num of args.
- */
-static char	**num_args(char **arr, int len)
-{
-	if (len == 1 || one_num_check(arr[1]))
-		exit(0);
-	if (non_numeric(arr[1]))
+	i = 0;
+	while (s[i])
 	{
-		write(STDERR_FILENO, "Error\n", 6);
-		exit(0);
+		j = 0;
+		while (s[i][j])
+		{
+			if (!(ft_isdigit(s[i][j]) || s[i][j] == '-' || s[i][j] == ' '))
+			{
+				write(STDOUT_FILENO, "Error\n", 6);
+				exit (0);
+			}
+			j++;
+		}
+		i++;
 	}
-	return (ft_split(arr[1], ' '));
 }
 
 /**
@@ -61,19 +44,22 @@ static void	sort_stack(t_stack **stack1, t_stack **stack2)
 {
 	if (stck_len(*stack1) == 2)
 		sort_stack_of_two(stack1);
-	if (stck_len(*stack1) == 3)
-		sort_stack_of_three(stack1);
 	else
 	{
-		push(stack1, stack2, false, "pb\n");
-		if (stck_len(*stack1) > 4)
+		if (stck_len(*stack1) == 3)
+			sort_stack_of_three(stack1);
+		else
+		{
 			push(stack1, stack2, false, "pb\n");
-		while (stck_len(*stack1) > 3)
-			push_cheapest(stack1, stack2, false);
-		sort_stack_of_three(stack1);
-		target_cbn_node(*stack2, *stack1);
-		while (*stack2)
-			push_cheapest(stack2, stack1, true);
+			if (stck_len(*stack1) > 4)
+				push(stack1, stack2, false, "pb\n");
+			while (stck_len(*stack1) > 3)
+				push_cheapest(stack1, stack2, false);
+			sort_stack_of_three(stack1);
+			target_cbn_node(*stack2, *stack1);
+			while (*stack2)
+				push_cheapest(stack2, stack1, true);
+		}
 	}
 }
 
@@ -84,16 +70,20 @@ int	main(int argc, char **argv)
 	char			**arr;
 
 	arr = NULL;
-	if (argc < 3)
-		arr = num_args(argv, argc);
+	if (argc == 1)
+	{
+		write(STDOUT_FILENO, "Error\n", 6);
+		exit(0);
+	}
+	if (argc == 2)
+		arr = ft_split(argv[1], ' ');
 	else
 		arr = ++argv;
 	out_of_range_check(arr);
+	non_numeric_check(arr);
 	stack_init(&a, arr);
 	b = NULL;
 	sort_stack(&a, &b);
 	bring_min_top(&a);
 	free_list(&a, arr, argc);
 }
-
-// make run -- 16 -59 -66 44 78 -40 63 -88 80 81
