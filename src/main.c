@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/21 15:20:20 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:41:28 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,7 @@ int	main(int argc, char **argv)
 
 	arr = NULL;
 	if (argc == 1)
-	{
-		write(STDOUT_FILENO, "Error\n", 6);
 		exit(0);
-	}
 	if (argc == 2)
 		arr = ft_split(argv[1], ' ');
 	else
