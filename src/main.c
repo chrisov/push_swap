@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/17 19:15:59 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:08:16 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	sort_stack(t_stack **stack1, t_stack **stack2)
 		push(stack1, stack2, false, "pb\n");
 		if (stck_len(*stack1) > 4)
 			push(stack1, stack2, false, "pb\n");
-		while (stck_len(*stack1) > 3)	
+		while (stck_len(*stack1) > 3)
 			push_cheapest(stack1, stack2, false);
 		sort_stack_of_three(stack1);
 		target_cbn_node(*stack2, *stack1);

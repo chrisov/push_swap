@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/17 19:14:56 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:07:29 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 static long	ft_atol(const char *str)
 {
 	long	res;
-	int	count;
-	int	sign;
+	int		count;
+	int		sign;
 
 	res = 0;
 	count = 0;
