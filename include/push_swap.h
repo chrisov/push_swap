@@ -54,7 +54,6 @@ void	bring_min_top(t_stack **head);
 
 // Error check
 bool	already_sorted(t_stack *head);
-void	out_of_range_check(char **arr);
 
 // Node attributes
 void	node_index(t_stack *head);
@@ -66,6 +65,7 @@ void	target_cbn_node(t_stack *src, t_stack *dst);
 void	stack_init(t_stack **stack, char **array, int len);
 void	push_cheapest(t_stack **src, t_stack **dest, bool rev_flag);
 void	sort_stack_of_two(t_stack **head);
+void	sort_stack_of_three(t_stack **head);
 void	bring_min_top(t_stack **head);
 void	push_cond(t_stack **src, t_stack **dst, t_stack *cheap, bool rev_flag);
 
