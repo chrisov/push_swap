@@ -12,60 +12,6 @@
 
 #include "../include/push_swap.h"
 
-/**
- * @brief Finds the node with the max value in the stack.
- */
-t_stack	*find_max_node(t_stack *head)
-{
-	t_stack	*max;
-
-	max = head;
-	while (head)
-	{
-		if (head->nbr > max->nbr)
-			max = head;
-		head = head->next_node;
-	}
-	return (max);
-}
-
-/**
- * @brief Finds the node with the max value in the stack.
- */
-t_stack	*find_min_node(t_stack *head)
-{
-	t_stack	*min;
-
-	min = head;
-	while (head)
-	{
-		if (head->nbr < min->nbr)
-			min = head;
-		head = head->next_node;
-	}
-	return (min);
-}
-
-/**
- * @brief Last step to bring the min value to the top of the stack.
- */
-void	bring_min_top(t_stack **head)
-{
-	t_stack	*min;
-
-	min = find_min_node(*head);
-	while ((*head)->nbr != min->nbr)
-	{
-		if (min->above_median)
-			rotate(head, "ra\n");
-		else
-			rev_rotate(head, "rra\n");
-	}
-}
-
-/**
- * @brief Checks if the input arr is already sorted.
- */
 bool	already_sorted(t_stack *head)
 {
 	while (head->next_node)
@@ -77,27 +23,26 @@ bool	already_sorted(t_stack *head)
 	return (true);
 }
 
-/**
- * @brief Frees allocated stack as well as the allocated arr if it is needed.
- */
-void	free_list(t_stack **head, char **array, int len)
+void	free_array(char **array)
+{
+	char	**ptr;
+
+	ptr = array;
+	while (*ptr)
+	{
+		free(*ptr);
+		ptr++;
+	}
+	free(array);
+}
+
+void	free_stack(t_stack **head)
 {
 	t_stack	*current;
 	t_stack	*next;
-	char	**ptr;
 
-	if (len == 2)
-	{
-		ptr = array;
-		while (*ptr)
-		{
-			free(*ptr);
-			ptr++;
-		}
-		free(array);
-	}
 	current = *head;
-	while (current != NULL)
+	while (current)
 	{
 		next = current->next_node;
 		free(current);

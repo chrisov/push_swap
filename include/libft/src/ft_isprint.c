@@ -18,21 +18,3 @@ int	ft_isprint(int ch)
 		return (1);
 	return (0);
 }
-
-// int	main(void)
-// {
-// 	const char	*str = "Hello World \t3!";
-//
-// 	printf("\nTest string: %s\n", str);
-// 	while (*str)
-// 	{
-// 		if (ft_isprint(*str) == 0)
-// 		{
-// 			printf("The argument contains non printable chars.\n");
-// 			return (0);
-// 		}
-// 		str++;
-// 	}
-// 	printf("The argument contains only printable chars.\n");
-// 	return (0);
-// }

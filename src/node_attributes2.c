@@ -52,3 +52,54 @@ void	calculate_cost(t_stack *s, t_stack *d)
 		ptr = ptr->next_node;
 	}
 }
+
+/**
+ * @brief Finds the node with the max value in the stack.
+ */
+t_stack	*find_max_node(t_stack *head)
+{
+	t_stack	*max;
+
+	max = head;
+	while (head)
+	{
+		if (head->nbr > max->nbr)
+			max = head;
+		head = head->next_node;
+	}
+	return (max);
+}
+
+/**
+ * @brief Finds the node with the max value in the stack.
+ */
+t_stack	*find_min_node(t_stack *head)
+{
+	t_stack	*min;
+
+	min = head;
+	while (head)
+	{
+		if (head->nbr < min->nbr)
+			min = head;
+		head = head->next_node;
+	}
+	return (min);
+}
+
+/**
+ * @brief Last step to bring the min value to the top of the stack.
+ */
+void	bring_min_top(t_stack **head)
+{
+	t_stack	*min;
+
+	min = find_min_node(*head);
+	while ((*head)->nbr != min->nbr)
+	{
+		if (min->above_median)
+			rotate(head, "ra\n");
+		else
+			rev_rotate(head, "rra\n");
+	}
+}

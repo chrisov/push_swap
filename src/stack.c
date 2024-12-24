@@ -32,27 +32,33 @@ static t_stack	*new_node(int value)
 /**
  * @brief Initialization of stack.
  */
-void	stack_init(t_stack **head, char **array)
+void	stack_init(t_stack **head, char **array, int len)
 {
 	t_stack	*current;
 	t_stack	*temp;
-
+	char	**ptr;
 
 	(*head) = new_node(ft_atoi(*array));
 	(*head)->i = 0;
 	current = (*head);
-	array++;
-	while (*array)
+	ptr = array;
+	ptr++;
+	while (*ptr)
 	{
 		temp = current;
-		current->next_node = new_node(ft_atoi(*array));
+		current->next_node = new_node(ft_atoi(*ptr));
 		current = current->next_node;
 		current->previous_node = temp;
 		current->i = current->previous_node->i + 1;
-		array++;
+		ptr++;
 	}
 	if (already_sorted(*head))
-		exit(1);
+	{
+		if (len == 2)
+			free_array(array);
+		free_stack(head);
+		exit(0);
+	}
 }
 
 /**
@@ -111,88 +117,3 @@ void	sort_stack_of_three(t_stack **head)
 	if (third > second && third > first && first > second)
 		swap(head);
 }
-
-// void	print_nodes(t_stack *src, t_stack *dest)
-// {
-// 	calculate_cost(src, dest);
-// 	is_cheapest(src);
-// 	while (src || dest)
-// 	{
-// 		if (src)
-// 		{
-// 			printf("(%d): %d[%d]\t->[%d] ",src->cost, src->nbr, src->i, src->target->i);
-// 			if (src->above_median)
-// 				printf("(above median)");
-// 			else
-// 				printf("(below median)");
-// 			if (src->cheapest)
-// 				printf(" (cheapest)\t\t");
-// 			else
-// 				printf("\t\t\t");
-// 			src = src->next_node;
-// 		}
-// 		else
-// 			printf("\t\t\t\t\t\t\t");
-// 		if (dest)
-// 		{
-// 			printf("%d[%d]\t", dest->nbr, dest->i);
-// 			if (dest->above_median == true)
-// 				printf("(above median)");
-// 			else
-// 				printf("(below median)");
-// 			dest = dest->next_node;
-// 		}
-// 		else
-// 			printf(" ");
-// 		printf("\n");
-// 	}
-// 	printf("             _____________________________________________________\n\n");
-// }
-
-// void	print_rev_nodes(t_stack *src, t_stack *dest)
-// {
-// 	calculate_cost(src, dest);
-// 	is_cheapest(src);
-// 	while (src || dest)
-// 	{
-// 		if (dest)
-// 		{
-// 			printf("%d[%d]\t", dest->nbr, dest->i);
-// 			if (dest->above_median == true)
-// 				printf("(above median)");
-// 			else
-// 				printf("(below median)");
-// 			printf("\t\t");
-// 			dest = dest->next_node;
-// 		}
-// 		else
-// 			printf("\t\t\t\t");
-// 		if (src)
-// 		{
-// 			if (src->cheapest)
-// 				printf("(cheapest) ");
-// 			else
-// 				printf("\t   ");
-// 			if (src->above_median)
-// 				printf("(above median) ");
-// 			else
-// 				printf("(below median) ");
-// 			printf("[%d]<-    %d[%d]  :(%d)", src->target->i, src->nbr, src->i, src->cost);
-// 			src = src->next_node;
-// 		}
-// 		else
-// 			printf(" ");
-// 		printf("\n");
-// 	}
-// 	printf("             _____________________________________________________\n\n");
-// }
-
-// void	print_node(t_stack *head)
-// {
-// 	while (head)
-// 	{
-// 		printf("%d[%d] -> ", head->nbr, head->i);
-// 		head = head->next_node;
-// 	}
-// 	printf("NULL\n");
-// }
