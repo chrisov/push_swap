@@ -45,7 +45,7 @@ static void	is_valid_integer(char **arr, int len)
 
 static void	has_duplicates(char **arr, int len)
 {
-    int	i;
+	int	i;
 	int	j;
 
 	i = 0;
@@ -60,7 +60,7 @@ static void	has_duplicates(char **arr, int len)
 				if (len == 2)
 					free_array(arr);
 				exit (0);
-			};
+			}
 			j++;
 		}
 		i++;
@@ -111,7 +111,7 @@ static void	out_of_range_check(char **arr, int len)
 		if (ft_atol(*current) > INT_MAX || ft_atol(*current) < INT_MIN)
 		{
 			write(STDERR_FILENO, "Error\n", 6);
-			if (len ==2 )
+			if (len == 2)
 				free_array(arr);
 			exit(0);
 		}

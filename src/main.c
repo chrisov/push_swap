@@ -26,7 +26,7 @@ static void	sort_stack(t_stack **stack1, t_stack **stack2)
 		push(stack1, stack2, false, "pb\n");
 		if (stck_len(*stack1) > 4)
 			push(stack1, stack2, false, "pb\n");
-		while (stck_len(*stack1) > 3)	
+		while (stck_len(*stack1) > 3)
 			push_cheapest(stack1, stack2, false);
 		sort_stack_of_three(stack1);
 		target_cbn_node(*stack2, *stack1);
@@ -43,7 +43,6 @@ int	main(int argc, char **argv)
 
 	arr = NULL;
 	arr = menu(argc, ++argv);
-	// out_of_range_check(arr, argc);
 	stack_init(&a, arr, argc);
 	b = NULL;
 	sort_stack(&a, &b);
