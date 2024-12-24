@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/17 19:15:59 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/24 11:44:37 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
 /**
- * @brief Looks for invalid parameters
+ * @brief Checks for invalid values in an array.
  */
 static void	is_valid_integer(char **arr, int len)
 {
@@ -43,6 +43,9 @@ static void	is_valid_integer(char **arr, int len)
 	}
 }
 
+/**
+ * @brief Checks for duplicate values in an array.
+ */
 static void	has_duplicates(char **arr, int len)
 {
 	int	i;
@@ -119,7 +122,7 @@ static void	out_of_range_check(char **arr, int len)
 	}
 }
 
-char	**menu(int len, char **arg)
+char	**param_check(int len, char **arg)
 {
 	char	**arr;
 

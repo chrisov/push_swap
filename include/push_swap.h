@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/18 12:52:20 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/24 11:44:22 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	push(t_stack **src_head, t_stack **dst_head, bool rev_flag, char *msg);
 
 //	Params
 
-char	**menu(int argc, char **argv);
+char	**param_check(int argc, char **argv);
 
 //	Sorting
 

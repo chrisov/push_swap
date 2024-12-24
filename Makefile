@@ -26,9 +26,9 @@ all: $(NAME)
 $(NAME): $(OBJDIR) $(OBJS) $(LIBFT)
 	@echo "\033[33mCompilating...\033[0m\n"
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFTDIR) -lft
-	@echo "\nCompilation \033[32msuccessful\033[0m! Input arguments and run:"
+	@echo "\nCompilation \033[32msuccessful\033[0m!\n"
 	@echo "eg: ./$(NAME) --n1 n2 n3 n4 ... "
-	@echo "eg: ./$(NAME) --n1 n2 n3 n4 ... | wc -l"
+	@echo "eg: ./$(NAME) --n1 n2 n3 n4 ... | wc -l\n"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@

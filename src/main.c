@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/21 15:41:28 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/24 11:44:08 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	char	**arr;
 
 	arr = NULL;
-	arr = menu(argc, ++argv);
+	arr = param_check(argc, ++argv);
 	stack_init(&a, arr, argc);
 	b = NULL;
 	sort_stack(&a, &b);
