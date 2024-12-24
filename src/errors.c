@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:50:29 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/24 11:44:37 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/24 12:00:03 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ static void	out_of_range_check(char **arr, int len)
 	}
 }
 
+/**
+ * @brief Runs the tests above.
+ */
 char	**param_check(int len, char **arg)
 {
 	char	**arr;
