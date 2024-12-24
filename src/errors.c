@@ -73,8 +73,8 @@ static void	has_duplicates(char **arr, int len)
 static long	ft_atol(const char *str)
 {
 	long	res;
-	int	count;
-	int	sign;
+	int		count;
+	int		sign;
 
 	res = 0;
 	count = 0;

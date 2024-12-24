@@ -6,7 +6,7 @@
 /*   By: dchrysov <dchrysov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:04:47 by dchrysov          #+#    #+#             */
-/*   Updated: 2024/12/17 19:12:49 by dchrysov         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:52:20 by dchrysov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,13 @@ char	**menu(int argc, char **argv);
 t_stack	*find_max_node(t_stack *head);
 t_stack	*find_min_node(t_stack *head);
 int		stck_len(t_stack *head);
-int		cost_calc(t_stack *src, t_stack *dest);
+void	bring_min_top(t_stack **head);
+
+// Error check
 bool	already_sorted(t_stack *head);
-void	sort_stack_of_three(t_stack **head);
+void	out_of_range_check(char **arr);
+
+// Node attributes
 void	node_index(t_stack *head);
 void	position_to_median(t_stack *head);
 void	calculate_cost(t_stack *src, t_stack *dest);

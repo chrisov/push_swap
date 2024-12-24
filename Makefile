@@ -26,8 +26,6 @@ all: $(NAME)
 	@echo "\nCompilation \033[32msuccessful!\033[0m Input arguments and run:"
 	@echo "eg: ./$(NAME) --n1 n2 n3 n4 ... "
 	@echo "eg: ./$(NAME) --n1 n2 n3 n4 ... | wc -l"
-	@echo "eg: make run -- n1 n2 n3 n4 ... "
-	@echo "eg: make run -- n1 n2 n3 n4 ... | wc -l\n"
 
 $(NAME): $(OBJDIR) $(OBJS) $(LIBFT)
 	@echo "\033[33mCompilating...\033[0m\n"
@@ -39,29 +37,17 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFTDIR)
-
-run: $(NAME)
-	@ARGS="$(filter-out $@,$(MAKECMDGOALS))";\
-	./$(NAME) $$ARGS
-
 clean:
 	@echo "\033[33mCleaning up build and library files...\033[0m\n"
 	rm -f $(OBJDIR)/*.o
 	rm -rf $(OBJDIR)
-	$(MAKE) -C $(LIBFTDIR) clean
 	@echo "\nAll build files cleaned up \033[32msuccessfully!\033[0m"
 
 fclean: clean
 	@echo "\033[33mCleaning up executables and static libraries...\033[0m\n"
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFTDIR) fclean
 	@echo "\nExecutables and static libraries cleaned up \033[32msuccessfully!\033[0m"
 	
 re: fclean all
-
-%:
-	@:
 
 .PHONY: all clean fclean re
